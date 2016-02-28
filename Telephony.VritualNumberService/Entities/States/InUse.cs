@@ -2,25 +2,17 @@
 {
     public class InUse : State
     {
-        public override int Id
+        public InUse()
         {
-            get { return 2; }
+            Id = 2;
+            Name = "InUse";
+            Description = "The virtual number is currently in use and valid.";
         }
 
-        public override string Name
-        {
-            get
-            {
-                return "InUse";
-            }
-        }
+        public override sealed int Id { get; protected set; }
 
-        public override string Description
-        {
-            get
-            {
-                return "The virtual number is currently in use and valid.";
-            }
-        }
+        public override sealed string Name { get; protected set; }
+
+        public override sealed string Description { get; protected set; }
     }
 }

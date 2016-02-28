@@ -2,10 +2,10 @@
 {
     public abstract class State
     {
-        public abstract int Id { get; }
+        public virtual int Id { get; protected set; }
 
-        public abstract string Name { get; }
+        public virtual string Name { get; protected set; }
 
-        public abstract string Description { get;}
+        public virtual string Description { get; protected set; }
     }
 }

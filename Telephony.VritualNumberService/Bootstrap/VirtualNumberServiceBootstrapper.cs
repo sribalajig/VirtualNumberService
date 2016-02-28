@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Nancy;
+using Nancy.Bootstrapper;
 using Nancy.TinyIoc;
 using Telephony.VritualNumberService.ApplicationServices;
 using Telephony.VritualNumberService.DataAccess;
@@ -9,6 +11,7 @@ using Telephony.VritualNumberService.Entities.Purpose;
 using Telephony.VritualNumberService.Entities.States;
 using Telephony.VritualNumberService.Entities.VirtualNumber;
 using Telephony.VritualNumberService.ModelBinder;
+using Telephony.VritualNumberService.Persistence;
 
 namespace Telephony.VritualNumberService.Bootstrap
 {
@@ -31,6 +34,20 @@ namespace Telephony.VritualNumberService.Bootstrap
             container.Register<IRepository<VirtualNumberAssociation>, Repository<VirtualNumberAssociation>>();
             container.Register<IRepository<Purpose>, Repository<Purpose>>();
             container.Register<IRepository<State>, Repository<State>>();
+        }
+
+        protected override void ApplicationStartup(
+            TinyIoCContainer container, 
+            IPipelines pipelines)
+        {
+            using (var context = new VirtualNumberContext())
+            {
+                context.States.Add(new Free());
+                context.States.Add(new InUse());
+                context.States.Add(new Expired());
+
+                context.SaveChanges();
+            }
         }
     }
 }

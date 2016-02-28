@@ -8,7 +8,6 @@
         {
             Number = number;
             _countryCode = "91";
-            Provider = provider;
         }
 
         public string FullNumber
@@ -20,7 +19,5 @@
         }
 
         public string Number { get; protected set; }
-
-        public Provider Provider { get; protected set; }
     }
 }

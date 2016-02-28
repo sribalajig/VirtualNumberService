@@ -4,6 +4,8 @@ namespace Telephony.VritualNumberService.Entities
 {
     public class VirtualNumberAssociation
     {
+        protected VirtualNumberAssociation() { }
+
         public VirtualNumberAssociation(
             VirtualNumber.VirtualNumber virtualNumber,
             State state,

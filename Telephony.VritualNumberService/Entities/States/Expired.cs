@@ -2,22 +2,17 @@
 {
     public class Expired : State
     {
-        public override int Id
+        public Expired()
         {
-            get { return 3; }
+            Id = 3;
+            Name = "Expired";
+            Description = "This virtual number has expired";
         }
 
-        public override string Name
-        {
-            get
-            {
-                return "Expired";
-            }
-        }
+        public override sealed int Id { get; protected set; }
 
-        public override string Description
-        {
-            get { return "Thiv virtual number has expired"; }
-        }
+        public override sealed string Name { get; protected set; }
+
+        public override sealed string Description { get; protected set; }
     }
 }

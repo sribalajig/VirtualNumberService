@@ -2,19 +2,17 @@
 {
     public class Free : State
     {
-        public override int Id
+        public Free()
         {
-            get { return 1; }
+            Id = 1;
+            Name = "Free";
+            Description = "Number is ready to be used.";
         }
 
-        public override string Name
-        {
-            get { return "Free"; }
-        }
+        public override sealed int Id { get; protected set; }
 
-        public override string Description
-        {
-            get { return "Number is ready to be used."; }
-        }
+        public override sealed string Name { get; protected set; }
+
+        public override sealed string Description { get; protected set; }
     }
 }

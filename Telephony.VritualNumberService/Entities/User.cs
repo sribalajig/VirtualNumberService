@@ -2,14 +2,12 @@
 {
     public class User
     {
+        protected User() { }
+
         public User(string babajobUserType, int babajobUserId)
         {
             BabajobUserType = babajobUserType;
             BabajobUserId = babajobUserId;
-        }
-
-        protected User()
-        {
         }
 
         public string BabajobUserType { get; protected set; }

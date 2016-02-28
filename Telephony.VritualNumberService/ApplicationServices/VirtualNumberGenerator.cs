@@ -58,7 +58,7 @@ namespace Telephony.VritualNumberService.ApplicationServices
 
             return new VirtualNumberAssociation(
                 availableNumber,
-                new InUse(),  
+                new Free(),  
                 virtualNumberRequest.Caller, 
                 virtualNumberRequest.Callee,
                 virtualNumberRequest.BabajobId);
