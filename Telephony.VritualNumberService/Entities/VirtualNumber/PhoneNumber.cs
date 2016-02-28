@@ -1,23 +1,27 @@
-﻿namespace Telephony.VritualNumberService.Entities.VirtualNumber
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Telephony.VritualNumberService.Entities.VirtualNumber
 {
     public class PhoneNumber
     {
         private readonly string _countryCode;
 
-        public PhoneNumber(string number, Provider provider)
+        protected PhoneNumber() { }
+
+        public PhoneNumber(string number)
         {
             Number = number;
             _countryCode = "91";
         }
 
-        public string FullNumber
-        {
-            get
-            {
-                return string.Format("{0}{1}{2}", "+", _countryCode, Number);
-            }
-        }
+        [Key]
+        public int Id { get; protected set; }
 
         public string Number { get; protected set; }
+
+        public string GetFullNumber()
+        {
+            return string.Format("{0}{1}{2}", "+", _countryCode, Number);
+        }
     }
 }

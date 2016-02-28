@@ -8,14 +8,18 @@ namespace Telephony.VritualNumberService.Persistence
 {
     public class VirtualNumberContext : DbContext
     {
-        //public DbSet<VirtualNumber> VirtualNumbers { get; set; }
+        public DbSet<VirtualNumber> VirtualNumbers { get; set; }
 
-        //public DbSet<VirtualNumberAssociation> VirtualNumberAssociations { get; set; }
+        public DbSet<VirtualNumberAssociation> VirtualNumberAssociations { get; set; }
 
-        //public DbSet<User> Users { get; set; }
+        public DbSet<User> Users { get; set; }
 
-        //public DbSet<Purpose> Purposes { get; set; }
+        public DbSet<Purpose> Purposes { get; set; }
 
         public DbSet<State> States { get; set; }
+
+        public DbSet<Provider> Providers { get; set; } 
+
+        public DbSet<PhoneNumber> PhoneNumbers { get; set; }  
     }
 }

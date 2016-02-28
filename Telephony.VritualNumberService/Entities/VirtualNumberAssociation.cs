@@ -1,4 +1,5 @@
-﻿using Telephony.VritualNumberService.Entities.States;
+﻿using System.ComponentModel.DataAnnotations;
+using Telephony.VritualNumberService.Entities.States;
 
 namespace Telephony.VritualNumberService.Entities
 {
@@ -19,6 +20,9 @@ namespace Telephony.VritualNumberService.Entities
             BabajobJobId = babajobJobId;
             State = state;
         }
+
+        [Key]
+        public int Id { get; protected set; }
 
         public User Caller { get; protected set; }
 

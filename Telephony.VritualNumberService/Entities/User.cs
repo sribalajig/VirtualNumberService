@@ -1,4 +1,6 @@
-﻿namespace Telephony.VritualNumberService.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Telephony.VritualNumberService.Entities
 {
     public class User
     {
@@ -12,6 +14,7 @@
 
         public string BabajobUserType { get; protected set; }
 
+        [Key]
         public int BabajobUserId { get; protected set; }
     }
 }

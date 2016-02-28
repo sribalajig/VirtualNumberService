@@ -1,4 +1,6 @@
-﻿namespace Telephony.VritualNumberService.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Telephony.VritualNumberService.Entities
 {
     public class Provider
     {
@@ -8,6 +10,7 @@
             Name = name;
         }
 
+        [Key]
         public int Id { get; protected set; }
 
         public string Name { get; protected set; }

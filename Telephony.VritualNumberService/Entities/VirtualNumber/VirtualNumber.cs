@@ -1,4 +1,6 @@
-﻿namespace Telephony.VritualNumberService.Entities.VirtualNumber
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Telephony.VritualNumberService.Entities.VirtualNumber
 {
     public class VirtualNumber
     {
@@ -13,6 +15,9 @@
             VirtualPhoneNumber = virtualPhoneNumber;
             Provider = provider;
         }
+
+        [Key]
+        public int Id { get; protected set; }
 
         public PhoneNumber VirtualPhoneNumber { get; protected set; }
 
