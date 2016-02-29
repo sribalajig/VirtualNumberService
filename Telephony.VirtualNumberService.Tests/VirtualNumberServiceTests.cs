@@ -15,21 +15,17 @@ namespace Telephony.VirtualNumberService.Tests
     [TestFixture]
     public class VirtualNumberServiceTests
     {
-        private const string ValidNumber = "9791011355";
-
         [Test]
         [Description("When a virtual number is available for a purpose, generate returns that number")]
-        public void GenerateGivesNumberIfOneIsAvailable()
+        public void GenerateReturnsANumberIfAvailable()
         {
-            var virtualNumberRepo = new Mock<IRepository<VirtualNumber>>();
-            var virtualNumberAssociationRepo = new Mock<IRepository<VirtualNumberAssociation>>();
+            var virtualNumberRepo = MockVirtualNumberDataSource.GetRepository<VirtualNumber>();
+            var virtualNumberAssociationRepo = MockVirtualNumberDataSource
+                .GetRepository<VirtualNumberAssociation>();
 
             virtualNumberRepo.Setup(repo => repo.Get(
                 It.IsAny<Func<VirtualNumber, bool>>()))
-                .Returns(new List<VirtualNumber>
-                {
-                    new VirtualNumber(new PhoneNumber(ValidNumber), new FreeJobApplication(), new Provider(1, "Exotel"))
-                });
+                .Returns(MockVirtualNumberDataSource.VirtualNumbersForFreeJobApplications);
 
             virtualNumberAssociationRepo.Setup(
                 repo => repo.Get(It.IsAny<Func<VirtualNumberAssociation, bool>>()))
@@ -41,9 +37,47 @@ namespace Telephony.VirtualNumberService.Tests
                 new Mock<IRepository<Purpose>>().Object, 
                 new Mock<IRepository<State>>().Object);
 
-            var number = virtualNumberService.Generate(new Mock<IVirtualNumberRequest>().Object);
+            var number = virtualNumberService
+                .Generate(new Mock<IVirtualNumberRequest>().Object);
 
-            Assert.AreEqual(number.VirtualNumber.VirtualPhoneNumber.Number, ValidNumber);
+            Assert.AreEqual(
+                number.VirtualNumber.VirtualPhoneNumber.Number, 
+                MockVirtualNumberDataSource.ValidNumber);
+        }
+
+        [Test]
+        [Description("If no virtual numbers are available for a given purpose, an exception will be thrown")]
+        public void GenerateThrowsExceptionIfThereAreNoAvalaiableNumbers()
+        {
+            var virtualNumberRepo = MockVirtualNumberDataSource.GetRepository<VirtualNumber>();
+            var virtualNumberAssociationRepo = MockVirtualNumberDataSource
+                .GetRepository<VirtualNumberAssociation>();
+
+            virtualNumberRepo.Setup(repo => repo.Get(
+                It.IsAny<Func<VirtualNumber, bool>>()))
+                .Returns(MockVirtualNumberDataSource.VirtualNumbersForFreeJobApplications);
+
+            var mockAssociation = new Mock<VirtualNumberAssociation>();
+            mockAssociation.Setup(a => a.VirtualNumber)
+                .Returns(new VirtualNumber(
+                    new PhoneNumber(MockVirtualNumberDataSource.ValidNumber),
+                    new FreeJobApplication(),
+                    MockVirtualNumberDataSource.GetProvider));
+
+            virtualNumberAssociationRepo.Setup(
+                repo => repo.Get(It.IsAny<Func<VirtualNumberAssociation, bool>>()))
+                .Returns(new List<VirtualNumberAssociation> { mockAssociation.Object });
+
+            var virtualNumberService = new VritualNumberService.ApplicationServices.VirtualNumberService(
+                virtualNumberRepo.Object,
+                virtualNumberAssociationRepo.Object,
+                new Mock<IRepository<Purpose>>().Object,
+                new Mock<IRepository<State>>().Object);
+
+            Assert.Throws<ApplicationException>(() =>
+            {
+                virtualNumberService.Generate(new Mock<IVirtualNumberRequest>().Object);
+            });
         }
     }
 }

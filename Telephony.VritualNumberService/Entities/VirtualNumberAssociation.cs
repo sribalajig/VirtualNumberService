@@ -5,33 +5,17 @@ namespace Telephony.VritualNumberService.Entities
 {
     public class VirtualNumberAssociation
     {
-        protected VirtualNumberAssociation() { }
-
-        public VirtualNumberAssociation(
-            VirtualNumber.VirtualNumber virtualNumber,
-            State state,
-            User caller, 
-            User callee,
-            int babajobJobId)
-        {
-            Caller = caller;
-            Callee = callee;
-            VirtualNumber = virtualNumber;
-            BabajobJobId = babajobJobId;
-            State = state;
-        }
-
         [Key]
-        public int Id { get; protected set; }
+        public virtual int Id { get; set; }
 
-        public User Caller { get; protected set; }
+        public virtual User Caller { get; set; }
 
-        public User Callee { get; protected set; }
+        public virtual User Callee { get; set; }
 
-        public VirtualNumber.VirtualNumber VirtualNumber { get; protected set; }
+        public virtual VirtualNumber.VirtualNumber VirtualNumber { get; set; }
 
-        public int BabajobJobId { get; protected set; }
+        public virtual int BabajobJobId { get; protected set; }
 
-        public State State { get; protected set; }
+        public virtual State State { get; set; }
     }
 }

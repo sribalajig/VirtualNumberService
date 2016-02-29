@@ -6,6 +6,7 @@ using Telephony.VritualNumberService.Entities;
 using Telephony.VritualNumberService.Entities.Purpose;
 using Telephony.VritualNumberService.Entities.States;
 using Telephony.VritualNumberService.Entities.VirtualNumber;
+using Telephony.VritualNumberService.Utilities;
 
 namespace Telephony.VritualNumberService.ApplicationServices
 {
@@ -51,17 +52,18 @@ namespace Telephony.VritualNumberService.ApplicationServices
                 && association.VirtualNumber.Purpose.Name == virtualNumberRequest.Purpose.Name);
 
             var availableNumber = availableNumbers.Except(virtualNumbersUsedBySeeker.Select(
-                number => number.VirtualNumber)).FirstOrDefault();
+                number => number.VirtualNumber), new VirtualNumberComparer()).FirstOrDefault();
 
             if (availableNumber == null)
                 throw new ApplicationException("No more numbers available");
 
-            return new VirtualNumberAssociation(
-                availableNumber,
-                new Free(),  
-                virtualNumberRequest.Caller, 
-                virtualNumberRequest.Callee,
-                virtualNumberRequest.BabajobId);
+            return new VirtualNumberAssociation
+            {
+                Caller = virtualNumberRequest.Caller,
+                Callee = virtualNumberRequest.Callee,
+                State = new InUse(),
+                VirtualNumber = availableNumber
+            };
         }
 
         public IEnumerable<Purpose> GetPurposes(Func<Purpose, bool> predicate = null)

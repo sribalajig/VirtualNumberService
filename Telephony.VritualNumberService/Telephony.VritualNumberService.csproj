@@ -76,6 +76,7 @@
     <Compile Include="DataAccess\IRepository.cs" />
     <Compile Include="DataAccess\Repository.cs" />
     <Compile Include="Entities\Purpose\FreeJobApplication.cs" />
+    <Compile Include="Entities\Purpose\PaidJobApplication.cs" />
     <Compile Include="Entities\Purpose\Purpose.cs" />
     <Compile Include="Entities\States\Expired.cs" />
     <Compile Include="Entities\States\Free.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Entities\VirtualNumberAssociation.cs" />
     <Compile Include="IVirtualNumberRequest.cs" />
     <Compile Include="Persistence\VirtualNumberContext.cs" />
+    <Compile Include="Utilities\VirtualNumberComparer.cs" />
     <Compile Include="VirtualNumberServiceSelfHost.cs" />
     <Compile Include="Entities\VirtualNumber\PhoneNumber.cs" />
     <Compile Include="ModelBinder\GenerateVirtualNumberRequestModelBinder.cs" />
