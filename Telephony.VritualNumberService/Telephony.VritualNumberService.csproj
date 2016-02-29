@@ -70,8 +70,8 @@
     <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationServices\IVirtualNumberGenerator.cs" />
-    <Compile Include="ApplicationServices\VirtualNumberGenerator.cs" />
+    <Compile Include="ApplicationServices\IVirtualNumberService.cs" />
+    <Compile Include="ApplicationServices\VirtualNumberService.cs" />
     <Compile Include="Bootstrap\VirtualNumberServiceBootstrapper.cs" />
     <Compile Include="DataAccess\IRepository.cs" />
     <Compile Include="DataAccess\Repository.cs" />
@@ -83,6 +83,7 @@
     <Compile Include="Entities\States\State.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\VirtualNumberAssociation.cs" />
+    <Compile Include="IVirtualNumberRequest.cs" />
     <Compile Include="Persistence\VirtualNumberContext.cs" />
     <Compile Include="VirtualNumberServiceSelfHost.cs" />
     <Compile Include="Entities\VirtualNumber\PhoneNumber.cs" />

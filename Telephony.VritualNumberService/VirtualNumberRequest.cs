@@ -3,7 +3,7 @@ using Telephony.VritualNumberService.Entities.Purpose;
 
 namespace Telephony.VritualNumberService
 {
-    public class VirtualNumberRequest
+    public class VirtualNumberRequest : IVirtualNumberRequest
     {
         public VirtualNumberRequest(
             User caller, 

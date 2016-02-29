@@ -13,7 +13,7 @@ namespace Telephony.VritualNumberService.ApplicationServices
 
         void Add(VirtualNumber virtualNumber);
 
-        VirtualNumberAssociation Generate(VirtualNumberRequest virtualNumberRequest);
+        VirtualNumberAssociation Generate(IVirtualNumberRequest virtualNumberRequest);
 
         IEnumerable<Purpose> GetPurposes(Func<Purpose, bool> predicate = null);
 

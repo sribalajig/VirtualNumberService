@@ -41,7 +41,7 @@ namespace Telephony.VritualNumberService.ApplicationServices
             _virtualNumberRepository.Add(virtualNumber);
         }
 
-        public VirtualNumberAssociation Generate(VirtualNumberRequest virtualNumberRequest)
+        public VirtualNumberAssociation Generate(IVirtualNumberRequest virtualNumberRequest)
         {
             var availableNumbers = _virtualNumberRepository.Get(
                 number => number.Purpose == virtualNumberRequest.Purpose);
