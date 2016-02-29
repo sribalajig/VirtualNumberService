@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Moq;
 using NUnit.Framework;
@@ -25,7 +24,7 @@ namespace Telephony.VirtualNumberService.Tests
 
             virtualNumberRepo.Setup(repo => repo.Get(
                 It.IsAny<Func<VirtualNumber, bool>>()))
-                .Returns(MockVirtualNumberDataSource.VirtualNumbersForFreeJobApplications);
+                .Returns(MockVirtualNumberDataSource.VirtualNumbers);
 
             virtualNumberAssociationRepo.Setup(
                 repo => repo.Get(It.IsAny<Func<VirtualNumberAssociation, bool>>()))
@@ -42,31 +41,25 @@ namespace Telephony.VirtualNumberService.Tests
 
             Assert.AreEqual(
                 number.VirtualNumber.VirtualPhoneNumber.Number, 
-                MockVirtualNumberDataSource.ValidNumber);
+                MockVirtualNumberDataSource.FreeJobApplicationNumber1);
         }
 
         [Test]
         [Description("If no virtual numbers are available for a given purpose, an exception will be thrown")]
         public void GenerateThrowsExceptionIfThereAreNoAvalaiableNumbers()
         {
-            var virtualNumberRepo = MockVirtualNumberDataSource.GetRepository<VirtualNumber>();
             var virtualNumberAssociationRepo = MockVirtualNumberDataSource
                 .GetRepository<VirtualNumberAssociation>();
 
+            var virtualNumberRepo = MockVirtualNumberDataSource.GetRepository<VirtualNumber>();
             virtualNumberRepo.Setup(repo => repo.Get(
                 It.IsAny<Func<VirtualNumber, bool>>()))
-                .Returns(MockVirtualNumberDataSource.VirtualNumbersForFreeJobApplications);
-
-            var mockAssociation = new Mock<VirtualNumberAssociation>();
-            mockAssociation.Setup(a => a.VirtualNumber)
-                .Returns(new VirtualNumber(
-                    new PhoneNumber(MockVirtualNumberDataSource.ValidNumber),
-                    new FreeJobApplication(),
-                    MockVirtualNumberDataSource.GetProvider));
+                .Returns(MockVirtualNumberDataSource.VirtualNumbers.Where(
+                    x => x.Purpose is FreeJobApplication));
 
             virtualNumberAssociationRepo.Setup(
                 repo => repo.Get(It.IsAny<Func<VirtualNumberAssociation, bool>>()))
-                .Returns(new List<VirtualNumberAssociation> { mockAssociation.Object });
+                .Returns(MockVirtualNumberDataSource.GetFreeJobAssociations.Select(j => j.Object));
 
             var virtualNumberService = new VritualNumberService.ApplicationServices.VirtualNumberService(
                 virtualNumberRepo.Object,
@@ -76,7 +69,11 @@ namespace Telephony.VirtualNumberService.Tests
 
             Assert.Throws<ApplicationException>(() =>
             {
-                virtualNumberService.Generate(new Mock<IVirtualNumberRequest>().Object);
+                var virtualNumberRequest = new Mock<IVirtualNumberRequest>();
+
+                virtualNumberRequest.Setup(x => x.Purpose).Returns(new FreeJobApplication());
+
+                virtualNumberService.Generate(virtualNumberRequest.Object);
             });
         }
     }

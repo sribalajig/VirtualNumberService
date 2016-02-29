@@ -45,7 +45,7 @@ namespace Telephony.VritualNumberService.ApplicationServices
         public VirtualNumberAssociation Generate(IVirtualNumberRequest virtualNumberRequest)
         {
             var availableNumbers = _virtualNumberRepository.Get(
-                number => number.Purpose == virtualNumberRequest.Purpose);
+                number => number.Purpose.Name.Equals(virtualNumberRequest.Purpose.Name));
 
             var virtualNumbersUsedBySeeker = _virtualNumberAssociationRepository.Get(
                 association => association.Caller.BabajobUserId == virtualNumberRequest.Caller.BabajobUserId
