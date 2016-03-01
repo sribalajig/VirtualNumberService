@@ -21,6 +21,12 @@ namespace Telephony.VritualNumberService.Data.Repositories
 
         public void Add(T item)
         {
+            using (var databaseContext = new VirtualNumberContext())
+            {
+                databaseContext.Set<T>().Add(item);
+
+                databaseContext.SaveChanges();
+            }
         }
     }
 }

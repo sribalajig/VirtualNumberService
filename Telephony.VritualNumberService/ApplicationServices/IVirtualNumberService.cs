@@ -19,6 +19,5 @@ namespace Telephony.VritualNumberService.ApplicationServices
         IEnumerable<Purpose> GetPurposes(Func<Purpose, bool> predicate = null);
 
         IEnumerable<State> GetStates(Func<State, bool> predicate = null);
-
     }
 }
