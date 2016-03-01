@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Telephony.VritualNumberService.Data.Persistence;
 
 namespace Telephony.VritualNumberService.Data.Repositories
 {
@@ -8,7 +9,14 @@ namespace Telephony.VritualNumberService.Data.Repositories
     {
         public IEnumerable<T> Get(Func<T, bool> predicate = null)
         {
-            return Enumerable.Empty<T>();
+            using (var databaseContext = new VirtualNumberContext())
+            {
+                if (predicate != null)
+                    return databaseContext.Set<T>()
+                        .Where(predicate);
+
+                return databaseContext.Set<T>().ToList();
+            }
         }
 
         public void Add(T item)
