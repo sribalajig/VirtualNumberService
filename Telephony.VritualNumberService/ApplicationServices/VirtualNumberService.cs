@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Telephony.VritualNumberService.DataAccess;
+using Telephony.VritualNumberService.Data.Repositories;
 using Telephony.VritualNumberService.Entities;
 using Telephony.VritualNumberService.Entities.Purpose;
 using Telephony.VritualNumberService.Entities.States;
 using Telephony.VritualNumberService.Entities.VirtualNumber;
+using Telephony.VritualNumberService.Modules.VirtualNumbers;
 using Telephony.VritualNumberService.Utilities;
 
 namespace Telephony.VritualNumberService.ApplicationServices

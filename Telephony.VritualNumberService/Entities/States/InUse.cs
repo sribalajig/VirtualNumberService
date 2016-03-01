@@ -1,6 +1,6 @@
 ﻿namespace Telephony.VritualNumberService.Entities.States
 {
-    public class InUse : State
+   public class InUse : State
     {
         public InUse()
         {
@@ -10,7 +10,6 @@
         }
 
         public override sealed int Id { get; protected set; }
-
         public override sealed string Name { get; protected set; }
 
         public override sealed string Description { get; protected set; }

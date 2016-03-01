@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Telephony.VritualNumberService.DataAccess
+namespace Telephony.VritualNumberService.Data.Repositories
 {
     public interface IRepository<T> where T : class
     {

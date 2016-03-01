@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Telephony.VritualNumberService.DataAccess
+namespace Telephony.VritualNumberService.Data.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class 
     {

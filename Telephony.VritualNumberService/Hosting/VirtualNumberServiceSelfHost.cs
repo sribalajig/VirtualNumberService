@@ -1,7 +1,7 @@
 ﻿using System;
 using Nancy.Hosting.Self;
 
-namespace Telephony.VritualNumberService
+namespace Telephony.VritualNumberService.Hosting
 {
     public class Hosting
     {

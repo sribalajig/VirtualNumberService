@@ -3,11 +3,12 @@ using System.Linq;
 using Moq;
 using NUnit.Framework;
 using Telephony.VritualNumberService;
-using Telephony.VritualNumberService.DataAccess;
+using Telephony.VritualNumberService.Data.Repositories;
 using Telephony.VritualNumberService.Entities;
 using Telephony.VritualNumberService.Entities.Purpose;
 using Telephony.VritualNumberService.Entities.States;
 using Telephony.VritualNumberService.Entities.VirtualNumber;
+using Telephony.VritualNumberService.Modules.VirtualNumbers;
 
 namespace Telephony.VirtualNumberService.Tests
 {

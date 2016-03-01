@@ -4,7 +4,7 @@ using Telephony.VritualNumberService.Entities.Purpose;
 using Telephony.VritualNumberService.Entities.States;
 using Telephony.VritualNumberService.Entities.VirtualNumber;
 
-namespace Telephony.VritualNumberService.Persistence
+namespace Telephony.VritualNumberService.Data.Persistence
 {
     public class VirtualNumberContext : DbContext
     {

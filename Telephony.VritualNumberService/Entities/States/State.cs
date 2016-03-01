@@ -2,7 +2,7 @@
 
 namespace Telephony.VritualNumberService.Entities.States
 {
-    public abstract class State
+    public class State
     {
         [Key]
         public virtual int Id { get; protected set; }

@@ -2,7 +2,7 @@
 using Nancy.ModelBinding;
 using Telephony.VritualNumberService.ApplicationServices;
 
-namespace Telephony.VritualNumberService
+namespace Telephony.VritualNumberService.Modules.VirtualNumbers
 {
     public class VirtualNumberModule : NancyModule
     {

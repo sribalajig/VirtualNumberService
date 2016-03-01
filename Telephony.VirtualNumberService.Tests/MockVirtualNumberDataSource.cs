@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Moq;
-using Telephony.VritualNumberService.DataAccess;
+using Telephony.VritualNumberService.Data.Repositories;
 using Telephony.VritualNumberService.Entities;
 using Telephony.VritualNumberService.Entities.Purpose;
 using Telephony.VritualNumberService.Entities.VirtualNumber;

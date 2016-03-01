@@ -1,7 +1,7 @@
 ﻿using Telephony.VritualNumberService.Entities;
 using Telephony.VritualNumberService.Entities.Purpose;
 
-namespace Telephony.VritualNumberService
+namespace Telephony.VritualNumberService.Modules.VirtualNumbers
 {
     public interface IVirtualNumberRequest
     {

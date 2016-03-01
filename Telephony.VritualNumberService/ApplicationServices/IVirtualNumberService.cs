@@ -4,6 +4,7 @@ using Telephony.VritualNumberService.Entities;
 using Telephony.VritualNumberService.Entities.Purpose;
 using Telephony.VritualNumberService.Entities.States;
 using Telephony.VritualNumberService.Entities.VirtualNumber;
+using Telephony.VritualNumberService.Modules.VirtualNumbers;
 
 namespace Telephony.VritualNumberService.ApplicationServices
 {

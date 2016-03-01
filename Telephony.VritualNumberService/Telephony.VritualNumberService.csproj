@@ -73,8 +73,8 @@
     <Compile Include="ApplicationServices\IVirtualNumberService.cs" />
     <Compile Include="ApplicationServices\VirtualNumberService.cs" />
     <Compile Include="Bootstrap\VirtualNumberServiceBootstrapper.cs" />
-    <Compile Include="DataAccess\IRepository.cs" />
-    <Compile Include="DataAccess\Repository.cs" />
+    <Compile Include="Data\Repositories\IRepository.cs" />
+    <Compile Include="Data\Repositories\Repository.cs" />
     <Compile Include="Entities\Purpose\FreeJobApplication.cs" />
     <Compile Include="Entities\Purpose\PaidJobApplication.cs" />
     <Compile Include="Entities\Purpose\Purpose.cs" />
@@ -84,10 +84,20 @@
     <Compile Include="Entities\States\State.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\VirtualNumberAssociation.cs" />
-    <Compile Include="IVirtualNumberRequest.cs" />
-    <Compile Include="Persistence\VirtualNumberContext.cs" />
+    <Compile Include="Migrations\201603010631049_Initial.cs" />
+    <Compile Include="Migrations\201603010631049_Initial.Designer.cs">
+      <DependentUpon>201603010631049_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603010635226_PopulateDefaultValues.cs" />
+    <Compile Include="Migrations\201603010635226_PopulateDefaultValues.Designer.cs">
+      <DependentUpon>201603010635226_PopulateDefaultValues.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Modules\DatabaseMigrations\MigrateModule.cs" />
+    <Compile Include="Modules\VirtualNumbers\IVirtualNumberRequest.cs" />
+    <Compile Include="Data\Persistence\VirtualNumberContext.cs" />
     <Compile Include="Utilities\VirtualNumberComparer.cs" />
-    <Compile Include="VirtualNumberServiceSelfHost.cs" />
+    <Compile Include="Hosting\VirtualNumberServiceSelfHost.cs" />
     <Compile Include="Entities\VirtualNumber\PhoneNumber.cs" />
     <Compile Include="ModelBinder\GenerateVirtualNumberRequestModelBinder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -95,13 +105,12 @@
     <Compile Include="Entities\VirtualNumber\VirtualNumber.cs" />
     <Compile Include="Utilities\IVirtualNumberRequestParser.cs" />
     <Compile Include="Utilities\VirtualNumberRequestParser.cs" />
-    <Compile Include="VirtualNumberModule.cs" />
-    <Compile Include="VirtualNumberRequest.cs" />
+    <Compile Include="Modules\VirtualNumbers\VirtualNumberModule.cs" />
+    <Compile Include="Modules\VirtualNumbers\VirtualNumberRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="Web.config" />
     <None Include="Web.Debug.config">
@@ -110,6 +119,14 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201603010631049_Initial.resx">
+      <DependentUpon>201603010631049_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603010635226_PopulateDefaultValues.resx">
+      <DependentUpon>201603010635226_PopulateDefaultValues.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

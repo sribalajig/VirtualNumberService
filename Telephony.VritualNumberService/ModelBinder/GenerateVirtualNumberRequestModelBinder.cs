@@ -3,6 +3,7 @@ using System.IO;
 using Nancy;
 using Nancy.ModelBinding;
 using Newtonsoft.Json.Linq;
+using Telephony.VritualNumberService.Modules.VirtualNumbers;
 using Telephony.VritualNumberService.Utilities;
 
 namespace Telephony.VritualNumberService.ModelBinder

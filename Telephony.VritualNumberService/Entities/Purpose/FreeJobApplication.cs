@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Telephony.VritualNumberService.Entities.Purpose
+﻿namespace Telephony.VritualNumberService.Entities.Purpose
 {
     public class FreeJobApplication : Purpose
     {
