@@ -13,7 +13,7 @@ namespace Telephony.VritualNumberService.Data.Repositories
             {
                 if (predicate != null)
                     return databaseContext.Set<T>()
-                        .Where(predicate);
+                        .Where(predicate).ToList();
 
                 return databaseContext.Set<T>().ToList();
             }
