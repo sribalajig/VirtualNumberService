@@ -1,12 +1,11 @@
-﻿using System;
-using System.Linq;
-using Moq;
+﻿using Moq;
 using NUnit.Framework;
+using System;
+using System.Linq;
+using Telephony.VritualNumberService.ApplicationServices;
 using Telephony.VritualNumberService.Data.Persistence;
-using Telephony.VritualNumberService.Data.Repositories;
 using Telephony.VritualNumberService.Entities;
 using Telephony.VritualNumberService.Entities.Purpose;
-using Telephony.VritualNumberService.Entities.States;
 using Telephony.VritualNumberService.Entities.VirtualNumber;
 using Telephony.VritualNumberService.Modules.VirtualNumbers;
 
@@ -30,11 +29,9 @@ namespace Telephony.VirtualNumberService.Tests
                 repo => repo.Get())
                 .Returns(Enumerable.Empty<VirtualNumberAssociation>().AsQueryable());
 
-            var virtualNumberService = new VritualNumberService.ApplicationServices.VirtualNumberService(
-                virtualNumberRepo.Object,
-                virtualNumberAssociationRepo.Object,
-                new Mock<IRepository<Purpose, VirtualNumberContext>>().Object,
-                new Mock<IRepository<State, VirtualNumberContext>>().Object);
+            var virtualNumberService = new VirtualNumberAssociationService(
+                virtualNumberAssociationRepo.Object, 
+                virtualNumberRepo.Object);
 
             var virtualNumberRequest = new Mock<IVirtualNumberRequest>();
             virtualNumberRequest.Setup(x => x.Purpose).Returns(new FreeJobApplication());
@@ -63,11 +60,9 @@ namespace Telephony.VirtualNumberService.Tests
                 repo => repo.Get())
                 .Returns(MockVirtualNumberDataSource.GetFreeJobAssociations.Select(j => j.Object).AsQueryable());
 
-            var virtualNumberService = new VritualNumberService.ApplicationServices.VirtualNumberService(
-                virtualNumberRepo.Object,
+            var virtualNumberService = new VirtualNumberAssociationService(
                 virtualNumberAssociationRepo.Object,
-                new Mock<IRepository<Purpose, VirtualNumberContext>>().Object,
-                new Mock<IRepository<State, VirtualNumberContext>>().Object);
+                virtualNumberRepo.Object);
 
             Assert.Throws<ApplicationException>(() =>
             {

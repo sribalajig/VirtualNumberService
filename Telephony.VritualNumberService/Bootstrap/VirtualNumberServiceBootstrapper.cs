@@ -27,6 +27,9 @@ namespace Telephony.VritualNumberService.Bootstrap
         {
             base.ConfigureApplicationContainer(container);
 
+            container.Register<
+                IVirtualNumberAssociationService, 
+                VirtualNumberAssociationService>();
             container.Register<IVirtualNumberService, VirtualNumberService>();
             container.Register<
                 IRepository<VirtualNumber, VirtualNumberContext>, 

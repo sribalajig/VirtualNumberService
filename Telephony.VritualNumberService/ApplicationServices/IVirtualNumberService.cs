@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using Telephony.VritualNumberService.Entities;
+﻿using System.Collections.Generic;
 using Telephony.VritualNumberService.Entities.Purpose;
 using Telephony.VritualNumberService.Entities.States;
 using Telephony.VritualNumberService.Entities.VirtualNumber;
-using Telephony.VritualNumberService.Modules.VirtualNumbers;
 
 namespace Telephony.VritualNumberService.ApplicationServices
 {
@@ -14,10 +11,8 @@ namespace Telephony.VritualNumberService.ApplicationServices
 
         void Add(VirtualNumber virtualNumber);
 
-        VirtualNumberAssociation Generate(IVirtualNumberRequest virtualNumberRequest);
+        IEnumerable<Purpose> GetPurposes();
 
-        IEnumerable<Purpose> GetPurposes(Func<Purpose, bool> predicate = null);
-
-        IEnumerable<State> GetStates(Func<State, bool> predicate = null);
+        IEnumerable<State> GetStates();
     }
 }

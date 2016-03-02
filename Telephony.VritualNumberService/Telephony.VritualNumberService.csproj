@@ -70,7 +70,9 @@
     <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationServices\IVirtualNumberAssociationService.cs" />
     <Compile Include="ApplicationServices\IVirtualNumberService.cs" />
+    <Compile Include="ApplicationServices\VirtualNumberAssociationService.cs" />
     <Compile Include="ApplicationServices\VirtualNumberService.cs" />
     <Compile Include="Bootstrap\VirtualNumberServiceBootstrapper.cs" />
     <Compile Include="Data\Repositories\IRepository.cs" />
