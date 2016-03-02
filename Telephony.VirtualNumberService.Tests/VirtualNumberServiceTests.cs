@@ -36,8 +36,11 @@ namespace Telephony.VirtualNumberService.Tests
                 new Mock<IRepository<Purpose, VirtualNumberContext>>().Object,
                 new Mock<IRepository<State, VirtualNumberContext>>().Object);
 
+            var virtualNumberRequest = new Mock<IVirtualNumberRequest>();
+            virtualNumberRequest.Setup(x => x.Purpose).Returns(new FreeJobApplication());
+
             var number = virtualNumberService
-                .Generate(new Mock<IVirtualNumberRequest>().Object);
+                .Generate(virtualNumberRequest.Object);
 
             Assert.AreEqual(
                 number.VirtualNumber.VirtualPhoneNumber.Number,
@@ -71,6 +74,8 @@ namespace Telephony.VirtualNumberService.Tests
                 var virtualNumberRequest = new Mock<IVirtualNumberRequest>();
 
                 virtualNumberRequest.Setup(x => x.Purpose).Returns(new FreeJobApplication());
+                virtualNumberRequest.Setup(v => v.Caller).Returns(new User("seeker", 1));
+
 
                 virtualNumberService.Generate(virtualNumberRequest.Object);
             });

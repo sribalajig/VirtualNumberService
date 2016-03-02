@@ -53,12 +53,16 @@ namespace Telephony.VirtualNumberService.Tests
                         new FreeJobApplication(),
                         GetProvider));
 
+                mockAssociationOne.Setup(a => a.Caller).Returns(new User("seeker", 1));
+
                 var mockAssociationTwo = new Mock<VirtualNumberAssociation>();
                 mockAssociationTwo.Setup(a => a.VirtualNumber)
                     .Returns(new VirtualNumber(
                         new PhoneNumber(FreeJobApplicationNumber2),
                         new FreeJobApplication(),
                         GetProvider));
+
+                mockAssociationTwo.Setup(a => a.Caller).Returns(new User("seeker", 1));
 
                 return new List<Mock<VirtualNumberAssociation>>
                 {
