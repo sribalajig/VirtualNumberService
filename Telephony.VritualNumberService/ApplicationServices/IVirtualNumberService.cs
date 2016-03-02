@@ -9,7 +9,7 @@ namespace Telephony.VritualNumberService.ApplicationServices
     {
         IEnumerable<VirtualNumber> Get();
 
-        void Add(VirtualNumber virtualNumber);
+        void Save(VirtualNumber virtualNumber);
 
         IEnumerable<Purpose> GetPurposes();
 

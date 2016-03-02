@@ -26,7 +26,7 @@ namespace Telephony.VritualNumberService.ApplicationServices
 
         public void Save(VirtualNumberAssociation virtualNumberAssociation)
         {
-            _virtualNumberAssociationRepository.Add(virtualNumberAssociation);
+            _virtualNumberAssociationRepository.Save(virtualNumberAssociation);
         }
 
         public IQueryable<VirtualNumberAssociation> Get()

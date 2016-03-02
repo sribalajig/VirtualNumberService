@@ -56,7 +56,7 @@ namespace Telephony.VritualNumberService.Modules.VirtualNumbers
 
             Post["/VirtualNumbers/"] = _ =>
             {
-                _virtualNumberService.Add(new VirtualNumber(
+                _virtualNumberService.Save(new VirtualNumber(
                     new PhoneNumber("9742244076"), 
                     new FreeJobApplication(), 
                     new Provider(1, "Exotel")));

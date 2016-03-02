@@ -36,9 +36,9 @@ namespace Telephony.VritualNumberService.ApplicationServices
             return numbers;
         }
 
-        public void Add(VirtualNumber virtualNumber)
+        public void Save(VirtualNumber virtualNumber)
         {
-            _virtualNumberRepository.Add(virtualNumber);
+            _virtualNumberRepository.Save(virtualNumber);
         }
 
         public IEnumerable<Purpose> GetPurposes()

@@ -14,7 +14,7 @@ namespace Telephony.VritualNumberService.Data.Repositories
             return _entities.Set<T>();
         }
 
-        public void Add(T item)
+        public void Save(T item)
         {
            _entities.Set<T>().Add(item);
         }
