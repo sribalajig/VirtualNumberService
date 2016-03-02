@@ -3,7 +3,7 @@ namespace Telephony.VritualNumberService.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class Bootstrap : DbMigration
     {
         public override void Up()
         {
@@ -20,7 +20,7 @@ namespace Telephony.VritualNumberService.Migrations
                 "dbo.Providers",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false),
                         Name = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
@@ -29,7 +29,7 @@ namespace Telephony.VritualNumberService.Migrations
                 "dbo.Purposes",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false),
                         Name = c.String(),
                         Description = c.String(),
                         Discriminator = c.String(nullable: false, maxLength: 128),
@@ -40,7 +40,7 @@ namespace Telephony.VritualNumberService.Migrations
                 "dbo.States",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false),
                         Name = c.String(),
                         Description = c.String(),
                         Discriminator = c.String(nullable: false, maxLength: 128),

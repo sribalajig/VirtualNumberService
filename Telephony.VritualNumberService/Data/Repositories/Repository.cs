@@ -1,11 +1,12 @@
 ﻿using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 
 namespace Telephony.VritualNumberService.Data.Repositories
 {
-    public class Repository<T, TC> : IRepository<T, TC> 
-        where T : class 
-        where TC : DbContext, new() 
+    public class Repository<T, TC> : IRepository<T, TC>
+        where T : class
+        where TC : DbContext, new()
     {
         private readonly TC _entities = new TC();
 
@@ -14,9 +15,11 @@ namespace Telephony.VritualNumberService.Data.Repositories
             return _entities.Set<T>();
         }
 
-        public void Save(T item)
+        public void Save(T entity)
         {
-           _entities.Set<T>().Add(item);
+            _entities.Set<T>().AddOrUpdate(entity);
+
+            _entities.SaveChanges();
         }
     }
 }

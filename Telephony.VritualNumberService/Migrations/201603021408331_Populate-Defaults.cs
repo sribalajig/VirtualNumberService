@@ -6,7 +6,7 @@ namespace Telephony.VritualNumberService.Migrations
 {
     using System.Data.Entity.Migrations;
     
-    public partial class PopulateDefaultValues : DbMigration
+    public partial class PopulateDefaults : DbMigration
     {
         public override void Up()
         {

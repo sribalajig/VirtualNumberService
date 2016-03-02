@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Telephony.VritualNumberService.Data.Persistence;
 using Telephony.VritualNumberService.Data.Repositories;
 using Telephony.VritualNumberService.Entities;
@@ -26,7 +27,8 @@ namespace Telephony.VritualNumberService.ApplicationServices
 
         public void Save(VirtualNumberAssociation virtualNumberAssociation)
         {
-            _virtualNumberAssociationRepository.Save(virtualNumberAssociation);
+            _virtualNumberAssociationRepository.Save(
+                virtualNumberAssociation);
         }
 
         public IQueryable<VirtualNumberAssociation> Get()

@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Telephony.VritualNumberService.Entities.VirtualNumber
 {
     public sealed class VirtualNumber
     {
-        private VirtualNumber() { }
+        public VirtualNumber() { }
 
         public VirtualNumber(
             PhoneNumber virtualPhoneNumber,

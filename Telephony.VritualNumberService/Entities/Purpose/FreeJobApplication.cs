@@ -1,4 +1,6 @@
-﻿namespace Telephony.VritualNumberService.Entities.Purpose
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Telephony.VritualNumberService.Entities.Purpose
 {
     public class FreeJobApplication : Purpose
     {
@@ -9,6 +11,7 @@
             Description = "This virutal number is meant for free job applications";
         }
 
+        [Key]
         public override sealed int Id { get; protected set; }
         
         public override sealed string Name { get; protected set; }

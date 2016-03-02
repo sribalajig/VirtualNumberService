@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Telephony.VritualNumberService.Entities
 {
@@ -13,6 +14,7 @@ namespace Telephony.VritualNumberService.Entities
         }
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; protected set; }
 
         public string Name { get; protected set; }

@@ -7,13 +7,13 @@ namespace Telephony.VritualNumberService.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class PopulateDefaultValues : IMigrationMetadata
+    public sealed partial class PopulateDefaults : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(PopulateDefaultValues));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(PopulateDefaults));
         
         string IMigrationMetadata.Id
         {
-            get { return "201603010635226_PopulateDefaultValues"; }
+            get { return "201603021408331_Populate-Defaults"; }
         }
         
         string IMigrationMetadata.Source
