@@ -10,7 +10,7 @@
         }
 
         public override sealed int Id { get; protected set; }
-
+        
         public override sealed string Name { get; protected set; }
 
         public override sealed string Description { get; protected set; }

@@ -4,6 +4,8 @@ namespace Telephony.VritualNumberService.Entities
 {
     public class Provider
     {
+        public Provider() { }
+
         public Provider(int id, string name)
         {
             Id = id;

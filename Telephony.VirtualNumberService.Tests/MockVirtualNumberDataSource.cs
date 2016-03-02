@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Moq;
+using Telephony.VritualNumberService.Data.Persistence;
 using Telephony.VritualNumberService.Data.Repositories;
 using Telephony.VritualNumberService.Entities;
 using Telephony.VritualNumberService.Entities.Purpose;
@@ -31,9 +32,9 @@ namespace Telephony.VirtualNumberService.Tests
             }
         } 
 
-        public static Mock<IRepository<T>> GetRepository<T>() where T : class 
+        public static Mock<IRepository<T, VirtualNumberContext>> GetRepository<T, TU>() where T : class where TU : VirtualNumberContext
         {
-            return new Mock<IRepository<T>>();
+            return new Mock<IRepository<T, VirtualNumberContext>>();
         }
 
         public static Provider GetProvider

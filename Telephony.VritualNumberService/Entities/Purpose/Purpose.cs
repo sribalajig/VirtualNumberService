@@ -1,7 +1,10 @@
-﻿namespace Telephony.VritualNumberService.Entities.Purpose
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Telephony.VritualNumberService.Entities.Purpose
 {
     public abstract class Purpose
     {
+        [Key]
         public virtual int Id { get; protected set; }
 
         public virtual string Name { get; protected set; }

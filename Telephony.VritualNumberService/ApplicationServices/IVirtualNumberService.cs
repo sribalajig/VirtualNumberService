@@ -10,7 +10,7 @@ namespace Telephony.VritualNumberService.ApplicationServices
 {
     public interface IVirtualNumberService
     {
-        IEnumerable<VirtualNumber> Get(Func<VirtualNumber, bool> predicate = null);
+        IEnumerable<VirtualNumber> Get();
 
         void Add(VirtualNumber virtualNumber);
 

@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Data.Entity;
+using System.Linq;
 
 namespace Telephony.VritualNumberService.Data.Repositories
 {
-    public interface IRepository<T> where T : class
+    public interface IRepository<T, C> where T : class where C : DbContext
     {
-        IEnumerable<T> Get(Func<T, bool> predicate = null);
+        IQueryable<T> Get();
 
         void Add(T item);
     }

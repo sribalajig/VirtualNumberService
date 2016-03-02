@@ -35,12 +35,12 @@ namespace Telephony.VritualNumberService.Modules.VirtualNumbers
 
             Post["/VirtualNumbers/"] = _ =>
             {
-                var virtualNumber = new VirtualNumber(
-                    new PhoneNumber("9742244076"),
-                    new FreeJobApplication(), 
-                    new Provider(1, "Exotel"));
+                var virtualNumber = this.Bind<VirtualNumber>();
 
-                _virtualNumberService.Add(virtualNumber);
+                _virtualNumberService.Add(new VirtualNumber(
+                    new PhoneNumber("9742244076"), 
+                    new FreeJobApplication(), 
+                    new Provider(1, "Exotel")));
 
                 return Response.AsJson(HttpStatusCode.Created);
             };

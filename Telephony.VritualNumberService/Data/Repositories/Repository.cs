@@ -1,32 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Data.Entity;
 using System.Linq;
-using Telephony.VritualNumberService.Data.Persistence;
 
 namespace Telephony.VritualNumberService.Data.Repositories
 {
-    public class Repository<T> : IRepository<T> where T : class 
+    public class Repository<T, TC> : IRepository<T, TC> 
+        where T : class 
+        where TC : DbContext, new() 
     {
-        public IEnumerable<T> Get(Func<T, bool> predicate = null)
-        {
-            using (var databaseContext = new VirtualNumberContext())
-            {
-                if (predicate != null)
-                    return databaseContext.Set<T>()
-                        .Where(predicate).ToList();
+        private readonly TC _entities = new TC();
 
-                return databaseContext.Set<T>().ToList();
-            }
+        public IQueryable<T> Get()
+        {
+            return _entities.Set<T>();
         }
 
         public void Add(T item)
         {
-            using (var databaseContext = new VirtualNumberContext())
-            {
-                databaseContext.Set<T>().Add(item);
-
-                databaseContext.SaveChanges();
-            }
+           _entities.Set<T>().Add(item);
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using Telephony.VritualNumberService.Data.Persistence;
 using Telephony.VritualNumberService.Data.Repositories;
 using Telephony.VritualNumberService.Entities;
 using Telephony.VritualNumberService.Entities.Purpose;
@@ -13,19 +15,19 @@ namespace Telephony.VritualNumberService.ApplicationServices
 {
     public class VirtualNumberService : IVirtualNumberService
     {
-        private readonly IRepository<VirtualNumber> _virtualNumberRepository;
+        private readonly IRepository<VirtualNumber, VirtualNumberContext> _virtualNumberRepository;
 
-        private readonly IRepository<VirtualNumberAssociation> _virtualNumberAssociationRepository;
+        private readonly IRepository<VirtualNumberAssociation, VirtualNumberContext> _virtualNumberAssociationRepository;
 
-        private readonly IRepository<Purpose> _purposeRespository;
+        private readonly IRepository<Purpose, VirtualNumberContext> _purposeRespository;
 
-        private readonly IRepository<State> _virtualNumberStateRepostiory;
+        private readonly IRepository<State, VirtualNumberContext> _virtualNumberStateRepostiory;
 
         public VirtualNumberService(
-            IRepository<VirtualNumber> virtualNumberRepository,
-            IRepository<VirtualNumberAssociation> virtualNumberAssociationRepository,
-            IRepository<Purpose> purposeRespository,
-            IRepository<State> virtualNumberStateRepostiory)
+            IRepository<VirtualNumber, VirtualNumberContext> virtualNumberRepository,
+            IRepository<VirtualNumberAssociation, VirtualNumberContext> virtualNumberAssociationRepository,
+            IRepository<Purpose, VirtualNumberContext> purposeRespository,
+            IRepository<State, VirtualNumberContext> virtualNumberStateRepostiory)
         {
             _virtualNumberRepository = virtualNumberRepository;
             _virtualNumberAssociationRepository = virtualNumberAssociationRepository;
@@ -33,9 +35,14 @@ namespace Telephony.VritualNumberService.ApplicationServices
             _virtualNumberStateRepostiory = virtualNumberStateRepostiory;
         }
 
-        public IEnumerable<VirtualNumber> Get(Func<VirtualNumber, bool> predicate)
+        public IEnumerable<VirtualNumber> Get()
         {
-            return _virtualNumberRepository.Get(predicate);
+            var numbers = _virtualNumberRepository.Get()
+                .Include(number => number.Purpose)
+                .Include(number => number.Provider)
+                .Include(number => number.VirtualPhoneNumber);
+
+            return numbers;
         }
    
         public void Add(VirtualNumber virtualNumber)
@@ -45,11 +52,11 @@ namespace Telephony.VritualNumberService.ApplicationServices
 
         public VirtualNumberAssociation Generate(IVirtualNumberRequest virtualNumberRequest)
         {
-            var availableNumbers = _virtualNumberRepository.Get(
-                number => number.Purpose.Name.Equals(virtualNumberRequest.Purpose.Name));
+            var availableNumbers = _virtualNumberRepository.Get()
+                .Where(number => number.Purpose.Name.Equals(virtualNumberRequest.Purpose.Name));
 
-            var virtualNumbersUsedBySeeker = _virtualNumberAssociationRepository.Get(
-                association => association.Caller.BabajobUserId == virtualNumberRequest.Caller.BabajobUserId
+            var virtualNumbersUsedBySeeker = _virtualNumberAssociationRepository.Get()
+                .Where(association => association.Caller.BabajobUserId == virtualNumberRequest.Caller.BabajobUserId
                 && association.VirtualNumber.Purpose.Name == virtualNumberRequest.Purpose.Name);
 
             var availableNumber = availableNumbers.Except(virtualNumbersUsedBySeeker.Select(

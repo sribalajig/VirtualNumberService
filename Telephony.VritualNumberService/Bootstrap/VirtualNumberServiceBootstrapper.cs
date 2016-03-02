@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Nancy;
 using Nancy.TinyIoc;
 using Telephony.VritualNumberService.ApplicationServices;
+using Telephony.VritualNumberService.Data.Persistence;
 using Telephony.VritualNumberService.Data.Repositories;
 using Telephony.VritualNumberService.Entities;
 using Telephony.VritualNumberService.Entities.Purpose;
@@ -27,10 +28,18 @@ namespace Telephony.VritualNumberService.Bootstrap
             base.ConfigureApplicationContainer(container);
 
             container.Register<IVirtualNumberService, VirtualNumberService>();
-            container.Register<IRepository<VirtualNumber>, Repository<VirtualNumber>>();
-            container.Register<IRepository<VirtualNumberAssociation>, Repository<VirtualNumberAssociation>>();
-            container.Register<IRepository<Purpose>, Repository<Purpose>>();
-            container.Register<IRepository<State>, Repository<State>>();
+            container.Register<
+                IRepository<VirtualNumber, VirtualNumberContext>, 
+                Repository<VirtualNumber, VirtualNumberContext>>();
+            container.Register<
+                IRepository<VirtualNumberAssociation, VirtualNumberContext>, 
+                Repository<VirtualNumberAssociation, VirtualNumberContext>>();
+            container.Register<
+                IRepository<Purpose, VirtualNumberContext>, 
+                Repository<Purpose, VirtualNumberContext>>();
+            container.Register<
+                IRepository<State, VirtualNumberContext>, 
+                Repository<State, VirtualNumberContext>>();
         }
     }
 }

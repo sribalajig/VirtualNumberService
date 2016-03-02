@@ -2,9 +2,9 @@
 
 namespace Telephony.VritualNumberService.Entities.VirtualNumber
 {
-    public class VirtualNumber
+    public sealed class VirtualNumber
     {
-        protected VirtualNumber() { }
+        private VirtualNumber() { }
 
         public VirtualNumber(
             PhoneNumber virtualPhoneNumber,
@@ -17,12 +17,12 @@ namespace Telephony.VritualNumberService.Entities.VirtualNumber
         }
 
         [Key]
-        public int Id { get; protected set; }
+        public int Id { get; set; }
 
-        public PhoneNumber VirtualPhoneNumber { get; protected set; }
+        public PhoneNumber VirtualPhoneNumber { get; set; }
 
-        public Purpose.Purpose Purpose { get; protected set; }
+        public Purpose.Purpose Purpose { get; set; }
 
-        public Provider Provider { get; protected set; }
+        public Provider Provider { get; set; }
     }
 }
