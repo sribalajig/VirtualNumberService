@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Telephony.VritualNumberService.Entities
 {
@@ -6,15 +7,16 @@ namespace Telephony.VritualNumberService.Entities
     {
         protected User() { }
 
-        public User(string babajobUserType, int babajobUserId)
+        public User(string babajobUserType, int id)
         {
             BabajobUserType = babajobUserType;
-            BabajobUserId = babajobUserId;
+            Id = id;
         }
 
         public string BabajobUserType { get; protected set; }
 
         [Key]
-        public int BabajobUserId { get; protected set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int Id { get; protected set; }
     }
 }

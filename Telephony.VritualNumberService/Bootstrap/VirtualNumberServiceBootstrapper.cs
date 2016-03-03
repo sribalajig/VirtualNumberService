@@ -30,19 +30,28 @@ namespace Telephony.VritualNumberService.Bootstrap
             container.Register<
                 IVirtualNumberAssociationService, 
                 VirtualNumberAssociationService>();
+
             container.Register<IVirtualNumberService, VirtualNumberService>();
+
             container.Register<
                 IRepository<VirtualNumber, VirtualNumberContext>, 
                 Repository<VirtualNumber, VirtualNumberContext>>();
+
             container.Register<
                 IRepository<VirtualNumberAssociation, VirtualNumberContext>, 
                 Repository<VirtualNumberAssociation, VirtualNumberContext>>();
+
             container.Register<
                 IRepository<Purpose, VirtualNumberContext>, 
                 Repository<Purpose, VirtualNumberContext>>();
+
             container.Register<
                 IRepository<State, VirtualNumberContext>, 
                 Repository<State, VirtualNumberContext>>();
+
+            container.Register<
+                IRepository<User, VirtualNumberContext>,
+                Repository<User, VirtualNumberContext>>();
         }
     }
 }

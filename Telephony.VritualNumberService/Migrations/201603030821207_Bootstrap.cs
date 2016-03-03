@@ -51,31 +51,31 @@ namespace Telephony.VritualNumberService.Migrations
                 "dbo.Users",
                 c => new
                     {
-                        BabajobUserId = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false),
                         BabajobUserType = c.String(),
                     })
-                .PrimaryKey(t => t.BabajobUserId);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.VirtualNumberAssociations",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
+                        CallerId = c.Int(nullable: false),
+                        CalleeId = c.Int(nullable: false),
+                        VirtualNumberId = c.Int(nullable: false),
                         BabajobJobId = c.Int(nullable: false),
-                        Callee_BabajobUserId = c.Int(),
-                        Caller_BabajobUserId = c.Int(),
-                        State_Id = c.Int(),
-                        VirtualNumber_Id = c.Int(),
+                        StateId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Users", t => t.Callee_BabajobUserId)
-                .ForeignKey("dbo.Users", t => t.Caller_BabajobUserId)
-                .ForeignKey("dbo.States", t => t.State_Id)
-                .ForeignKey("dbo.VirtualNumbers", t => t.VirtualNumber_Id)
-                .Index(t => t.Callee_BabajobUserId)
-                .Index(t => t.Caller_BabajobUserId)
-                .Index(t => t.State_Id)
-                .Index(t => t.VirtualNumber_Id);
+                .ForeignKey("dbo.Users", t => t.CalleeId)
+                .ForeignKey("dbo.Users", t => t.CallerId)
+                .ForeignKey("dbo.States", t => t.StateId, cascadeDelete: true)
+                .ForeignKey("dbo.VirtualNumbers", t => t.VirtualNumberId, cascadeDelete: true)
+                .Index(t => t.CallerId)
+                .Index(t => t.CalleeId)
+                .Index(t => t.VirtualNumberId)
+                .Index(t => t.StateId);
             
             CreateTable(
                 "dbo.VirtualNumbers",
@@ -98,20 +98,20 @@ namespace Telephony.VritualNumberService.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.VirtualNumberAssociations", "VirtualNumber_Id", "dbo.VirtualNumbers");
+            DropForeignKey("dbo.VirtualNumberAssociations", "VirtualNumberId", "dbo.VirtualNumbers");
             DropForeignKey("dbo.VirtualNumbers", "NumberId", "dbo.PhoneNumbers");
             DropForeignKey("dbo.VirtualNumbers", "PurposeId", "dbo.Purposes");
             DropForeignKey("dbo.VirtualNumbers", "ProviderId", "dbo.Providers");
-            DropForeignKey("dbo.VirtualNumberAssociations", "State_Id", "dbo.States");
-            DropForeignKey("dbo.VirtualNumberAssociations", "Caller_BabajobUserId", "dbo.Users");
-            DropForeignKey("dbo.VirtualNumberAssociations", "Callee_BabajobUserId", "dbo.Users");
+            DropForeignKey("dbo.VirtualNumberAssociations", "StateId", "dbo.States");
+            DropForeignKey("dbo.VirtualNumberAssociations", "CallerId", "dbo.Users");
+            DropForeignKey("dbo.VirtualNumberAssociations", "CalleeId", "dbo.Users");
             DropIndex("dbo.VirtualNumbers", new[] { "ProviderId" });
             DropIndex("dbo.VirtualNumbers", new[] { "PurposeId" });
             DropIndex("dbo.VirtualNumbers", new[] { "NumberId" });
-            DropIndex("dbo.VirtualNumberAssociations", new[] { "VirtualNumber_Id" });
-            DropIndex("dbo.VirtualNumberAssociations", new[] { "State_Id" });
-            DropIndex("dbo.VirtualNumberAssociations", new[] { "Caller_BabajobUserId" });
-            DropIndex("dbo.VirtualNumberAssociations", new[] { "Callee_BabajobUserId" });
+            DropIndex("dbo.VirtualNumberAssociations", new[] { "StateId" });
+            DropIndex("dbo.VirtualNumberAssociations", new[] { "VirtualNumberId" });
+            DropIndex("dbo.VirtualNumberAssociations", new[] { "CalleeId" });
+            DropIndex("dbo.VirtualNumberAssociations", new[] { "CallerId" });
             DropTable("dbo.VirtualNumbers");
             DropTable("dbo.VirtualNumberAssociations");
             DropTable("dbo.Users");

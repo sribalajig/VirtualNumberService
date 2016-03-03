@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using Telephony.VritualNumberService.ApplicationServices;
 using Telephony.VritualNumberService.Data.Persistence;
+using Telephony.VritualNumberService.Data.Repositories;
 using Telephony.VritualNumberService.Entities;
 using Telephony.VritualNumberService.Entities.Purpose;
 using Telephony.VritualNumberService.Entities.VirtualNumber;
@@ -31,7 +32,8 @@ namespace Telephony.VirtualNumberService.Tests
 
             var virtualNumberService = new VirtualNumberAssociationService(
                 virtualNumberAssociationRepo.Object, 
-                virtualNumberRepo.Object);
+                virtualNumberRepo.Object,
+                new Mock<IRepository<User, VirtualNumberContext>>().Object);
 
             var virtualNumberRequest = new Mock<IVirtualNumberRequest>();
             virtualNumberRequest.Setup(x => x.Purpose).Returns(new FreeJobApplication());
@@ -62,7 +64,8 @@ namespace Telephony.VirtualNumberService.Tests
 
             var virtualNumberService = new VirtualNumberAssociationService(
                 virtualNumberAssociationRepo.Object,
-                virtualNumberRepo.Object);
+                virtualNumberRepo.Object,
+                new Mock<IRepository<User, VirtualNumberContext>>().Object);
 
             Assert.Throws<ApplicationException>(() =>
             {

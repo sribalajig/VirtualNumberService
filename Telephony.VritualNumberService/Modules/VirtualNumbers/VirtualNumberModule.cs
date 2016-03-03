@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Data.Entity;
+using System.Linq;
 using Nancy;
 using Nancy.ModelBinding;
 using Telephony.VritualNumberService.ApplicationServices;
@@ -29,24 +30,26 @@ namespace Telephony.VritualNumberService.Modules.VirtualNumbers
             {
                 var virtualNumberRequest = this.Bind<VirtualNumberRequest>();
 
-                var existingAssociation = _virtualNumberAssociationService.Get().FirstOrDefault(
-                                        association => association.Caller.BabajobUserId 
-                                                    == virtualNumberRequest.Caller.BabajobUserId
-                                     && association.Callee.BabajobUserId 
-                                                    == virtualNumberRequest.Callee.BabajobUserId
-                                     && association.BabajobJobId 
-                                                    == virtualNumberRequest.BabajobId);
+                var existingAssociation = _virtualNumberAssociationService.Get()
+                                        .Include(a => a.VirtualNumber.VirtualPhoneNumber)
+                                        .FirstOrDefault(
+                                                    association => association.Caller.Id 
+                                                                == virtualNumberRequest.Caller.Id
+                                                    && association.Callee.Id 
+                                                                == virtualNumberRequest.Callee.Id
+                                                    && association.BabajobJobId 
+                                                                == virtualNumberRequest.BabajobId);
 
                 if (existingAssociation != null)
                 {
-                    return existingAssociation;
+                    return Response.AsJson(existingAssociation.VirtualNumber.VirtualPhoneNumber);
                 }
 
                 var newAssociation = _virtualNumberAssociationService.Generate(virtualNumberRequest);
 
                 _virtualNumberAssociationService.Save(newAssociation);
 
-                return newAssociation;
+                return newAssociation.VirtualNumber;
             };
 
             Get["/VirtualNumbers/States"] = _ => 
@@ -59,13 +62,13 @@ namespace Telephony.VritualNumberService.Modules.VirtualNumbers
             {
                 var purpose = new FreeJobApplication();
                 var provider = new Provider(2, "Ozonetel");
-                var number = new PhoneNumber("9860223424");
+                var number = new PhoneNumber("9742244076");
 
                 var virtualNumber = new VirtualNumber
                 {
                     PurposeId = purpose.Id,
                     ProviderId = provider.Id,
-                    VirtualPhoneNumber = number
+                    VirtualPhoneNumber = number,
                 };
 
                 _virtualNumberService.Save(virtualNumber);

@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using Telephony.VritualNumberService.Data.Persistence;
 using Telephony.VritualNumberService.Data.Repositories;
 using Telephony.VritualNumberService.Entities;
@@ -15,20 +15,50 @@ namespace Telephony.VritualNumberService.ApplicationServices
     {
         private readonly IRepository<VirtualNumberAssociation, VirtualNumberContext> _virtualNumberAssociationRepository;
 
-        private readonly IRepository<VirtualNumber, VirtualNumberContext> _virtualNumberRepository; 
+        private readonly IRepository<VirtualNumber, VirtualNumberContext> _virtualNumberRepository;
+
+        private readonly IRepository<User, VirtualNumberContext> _userRepository;
 
         public VirtualNumberAssociationService(
             IRepository<VirtualNumberAssociation, VirtualNumberContext> virtualNumberAssociationRepository,
-            IRepository<VirtualNumber, VirtualNumberContext> virtualNumberRepository)
+            IRepository<VirtualNumber, VirtualNumberContext> virtualNumberRepository,
+            IRepository<User, VirtualNumberContext> userRepository)
         {
             _virtualNumberAssociationRepository = virtualNumberAssociationRepository;
             _virtualNumberRepository = virtualNumberRepository;
+            _userRepository = userRepository;
         }
 
         public void Save(VirtualNumberAssociation virtualNumberAssociation)
         {
-            _virtualNumberAssociationRepository.Save(
-                virtualNumberAssociation);
+            var caller = _userRepository.Get()
+                .FirstOrDefault(
+                user => user.Id 
+                    == virtualNumberAssociation.Caller.Id);
+
+            if (caller == null)
+            {
+                _userRepository.Save(virtualNumberAssociation.Caller);
+            }
+
+            var callee = _userRepository.Get()
+                .FirstOrDefault(user => user.Id
+                    == virtualNumberAssociation.Callee.Id);
+
+            if (callee == null)
+            {
+                _userRepository.Save(virtualNumberAssociation.Callee);
+            }
+
+            var newAssociation = new VirtualNumberAssociation
+            {
+                CallerId = virtualNumberAssociation.Caller.Id,
+                CalleeId = virtualNumberAssociation.Callee.Id,
+                StateId = virtualNumberAssociation.State.Id,
+                VirtualNumberId = virtualNumberAssociation.VirtualNumber.Id
+            };
+
+            _virtualNumberAssociationRepository.Save(newAssociation);
         }
 
         public IQueryable<VirtualNumberAssociation> Get()
@@ -39,15 +69,19 @@ namespace Telephony.VritualNumberService.ApplicationServices
         public VirtualNumberAssociation Generate(IVirtualNumberRequest virtualNumberRequest)
         {
             var availableNumbers = _virtualNumberRepository.Get()
-                .Where(number => number.Purpose.Name.Equals(virtualNumberRequest.Purpose.Name));
+                .Where(number => number.Purpose.Name.Equals(virtualNumberRequest.Purpose.Name))
+                .Include(number => number.VirtualPhoneNumber);
 
             var virtualNumbersUsedBySeeker = _virtualNumberAssociationRepository.Get()
                 .Where(
-                association => association.Caller.BabajobUserId == virtualNumberRequest.Caller.BabajobUserId
+                association => association.Caller.Id == virtualNumberRequest.Caller.Id
                 && association.VirtualNumber.Purpose.Name == virtualNumberRequest.Purpose.Name);
 
-            var availableNumber = availableNumbers.Except(virtualNumbersUsedBySeeker.Select(
-                number => number.VirtualNumber), new VirtualNumberComparer()).FirstOrDefault();
+            var numbersUsedBySeeker = virtualNumbersUsedBySeeker.Select(
+                number => number.VirtualNumber).ToList();
+
+            var availableNumber = availableNumbers.ToList()
+                .Except((numbersUsedBySeeker), new VirtualNumberComparer()).FirstOrDefault();
 
             if (availableNumber == null)
                 throw new ApplicationException("No more numbers available");
