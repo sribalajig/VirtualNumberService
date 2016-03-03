@@ -44,7 +44,7 @@ namespace Telephony.VritualNumberService.Modules.VirtualNumbers
                 {
                     return Response.AsJson(existingAssociation.VirtualNumber.VirtualPhoneNumber);
                 }
-
+                
                 var newAssociation = _virtualNumberAssociationService.Generate(virtualNumberRequest);
 
                 _virtualNumberAssociationService.Save(newAssociation);
@@ -60,18 +60,7 @@ namespace Telephony.VritualNumberService.Modules.VirtualNumbers
 
             Post["/VirtualNumbers/"] = _ =>
             {
-                var purpose = new FreeJobApplication();
-                var provider = new Provider(2, "Ozonetel");
-                var number = new PhoneNumber("9742244076");
-
-                var virtualNumber = new VirtualNumber
-                {
-                    PurposeId = purpose.Id,
-                    ProviderId = provider.Id,
-                    VirtualPhoneNumber = number,
-                };
-
-                _virtualNumberService.Save(virtualNumber);
+                _virtualNumberService.Save(this.Bind<VirtualNumber>());
 
                 return Response.AsJson(HttpStatusCode.Created);
             };

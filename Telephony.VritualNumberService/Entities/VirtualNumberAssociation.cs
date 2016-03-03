@@ -11,6 +11,7 @@ namespace Telephony.VritualNumberService.Entities
 
         public int CallerId { get; set; }
 
+        [Index(IsClustered = true)]
         [ForeignKey("CallerId")]
         public virtual User Caller { get; set; }
 

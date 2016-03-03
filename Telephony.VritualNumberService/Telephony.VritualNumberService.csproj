@@ -95,6 +95,7 @@
       <DependentUpon>201603030855548_PopulateDefaults.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="ModelBinder\VirtualNumberModelBinder.cs" />
     <Compile Include="Modules\DatabaseMigrations\MigrateModule.cs" />
     <Compile Include="Modules\VirtualNumbers\IVirtualNumberRequest.cs" />
     <Compile Include="Data\Persistence\VirtualNumberContext.cs" />

@@ -78,13 +78,13 @@ namespace Telephony.VritualNumberService.ApplicationServices
                 && association.VirtualNumber.Purpose.Name == virtualNumberRequest.Purpose.Name);
 
             var numbersUsedBySeeker = virtualNumbersUsedBySeeker.Select(
-                number => number.VirtualNumber).ToList();
+                number => number.VirtualNumber).Include(number => number.VirtualPhoneNumber).ToList();
 
             var availableNumber = availableNumbers.ToList()
                 .Except((numbersUsedBySeeker), new VirtualNumberComparer()).FirstOrDefault();
 
             if (availableNumber == null)
-                throw new ApplicationException("No more numbers available");
+                throw new ApplicationException("No more numbers available!");
 
             return new VirtualNumberAssociation
             {

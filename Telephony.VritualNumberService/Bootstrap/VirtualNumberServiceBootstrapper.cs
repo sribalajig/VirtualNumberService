@@ -19,7 +19,11 @@ namespace Telephony.VritualNumberService.Bootstrap
         {
             get
             {
-                return new[] { typeof(GenerateVirtualNumberRequestModelBinder) };
+                return new[]
+                {
+                    typeof(GenerateVirtualNumberRequestModelBinder),
+                    typeof(VirtualNumberModelBinder)
+                };
             }
         }
 
