@@ -86,13 +86,13 @@
     <Compile Include="Entities\States\State.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\VirtualNumberAssociation.cs" />
-    <Compile Include="Migrations\201603021406507_Bootstrap.cs" />
-    <Compile Include="Migrations\201603021406507_Bootstrap.Designer.cs">
-      <DependentUpon>201603021406507_Bootstrap.cs</DependentUpon>
+    <Compile Include="Migrations\201603030421509_Bootstrap.cs" />
+    <Compile Include="Migrations\201603030421509_Bootstrap.Designer.cs">
+      <DependentUpon>201603030421509_Bootstrap.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603021408331_Populate-Defaults.cs" />
-    <Compile Include="Migrations\201603021408331_Populate-Defaults.Designer.cs">
-      <DependentUpon>201603021408331_Populate-Defaults.cs</DependentUpon>
+    <Compile Include="Migrations\201603030422215_PopulateDefaults.cs" />
+    <Compile Include="Migrations\201603030422215_PopulateDefaults.Designer.cs">
+      <DependentUpon>201603030422215_PopulateDefaults.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Modules\DatabaseMigrations\MigrateModule.cs" />
@@ -123,11 +123,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603021406507_Bootstrap.resx">
-      <DependentUpon>201603021406507_Bootstrap.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603030421509_Bootstrap.resx">
+      <DependentUpon>201603030421509_Bootstrap.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603021408331_Populate-Defaults.resx">
-      <DependentUpon>201603021408331_Populate-Defaults.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603030422215_PopulateDefaults.resx">
+      <DependentUpon>201603030422215_PopulateDefaults.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

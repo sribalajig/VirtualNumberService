@@ -2,6 +2,7 @@
 using Nancy;
 using Nancy.ModelBinding;
 using Telephony.VritualNumberService.ApplicationServices;
+using Telephony.VritualNumberService.Data.Persistence;
 using Telephony.VritualNumberService.Entities;
 using Telephony.VritualNumberService.Entities.Purpose;
 using Telephony.VritualNumberService.Entities.VirtualNumber;
@@ -56,10 +57,18 @@ namespace Telephony.VritualNumberService.Modules.VirtualNumbers
 
             Post["/VirtualNumbers/"] = _ =>
             {
-                _virtualNumberService.Save(new VirtualNumber(
-                    new PhoneNumber("9791011355"), 
-                    new FreeJobApplication(), 
-                    new Provider(2, "Ozonetel")));
+                var purpose = new FreeJobApplication();
+                var provider = new Provider(2, "Ozonetel");
+                var number = new PhoneNumber("9860223424");
+
+                var virtualNumber = new VirtualNumber
+                {
+                    PurposeId = purpose.Id,
+                    ProviderId = provider.Id,
+                    VirtualPhoneNumber = number
+                };
+
+                _virtualNumberService.Save(virtualNumber);
 
                 return Response.AsJson(HttpStatusCode.Created);
             };

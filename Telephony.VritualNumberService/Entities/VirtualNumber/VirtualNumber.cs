@@ -20,10 +20,19 @@ namespace Telephony.VritualNumberService.Entities.VirtualNumber
         [Key]
         public int Id { get; set; }
 
+        public int NumberId { get; set; }
+
+        [ForeignKey("NumberId")]
         public PhoneNumber VirtualPhoneNumber { get; set; }
 
+        public int PurposeId { get; set; }
+
+        [ForeignKey("PurposeId")]
         public Purpose.Purpose Purpose { get; set; }
 
+        public int ProviderId { get; set; }
+
+        [ForeignKey("ProviderId")]
         public Provider Provider { get; set; }
     }
 }

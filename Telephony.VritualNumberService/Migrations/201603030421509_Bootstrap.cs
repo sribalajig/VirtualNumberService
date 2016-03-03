@@ -82,32 +82,32 @@ namespace Telephony.VritualNumberService.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Provider_Id = c.Int(),
-                        Purpose_Id = c.Int(),
-                        VirtualPhoneNumber_Id = c.Int(),
+                        NumberId = c.Int(nullable: false),
+                        PurposeId = c.Int(nullable: false),
+                        ProviderId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Providers", t => t.Provider_Id)
-                .ForeignKey("dbo.Purposes", t => t.Purpose_Id)
-                .ForeignKey("dbo.PhoneNumbers", t => t.VirtualPhoneNumber_Id)
-                .Index(t => t.Provider_Id)
-                .Index(t => t.Purpose_Id)
-                .Index(t => t.VirtualPhoneNumber_Id);
+                .ForeignKey("dbo.Providers", t => t.ProviderId, cascadeDelete: true)
+                .ForeignKey("dbo.Purposes", t => t.PurposeId, cascadeDelete: true)
+                .ForeignKey("dbo.PhoneNumbers", t => t.NumberId, cascadeDelete: true)
+                .Index(t => t.NumberId)
+                .Index(t => t.PurposeId)
+                .Index(t => t.ProviderId);
             
         }
         
         public override void Down()
         {
             DropForeignKey("dbo.VirtualNumberAssociations", "VirtualNumber_Id", "dbo.VirtualNumbers");
-            DropForeignKey("dbo.VirtualNumbers", "VirtualPhoneNumber_Id", "dbo.PhoneNumbers");
-            DropForeignKey("dbo.VirtualNumbers", "Purpose_Id", "dbo.Purposes");
-            DropForeignKey("dbo.VirtualNumbers", "Provider_Id", "dbo.Providers");
+            DropForeignKey("dbo.VirtualNumbers", "NumberId", "dbo.PhoneNumbers");
+            DropForeignKey("dbo.VirtualNumbers", "PurposeId", "dbo.Purposes");
+            DropForeignKey("dbo.VirtualNumbers", "ProviderId", "dbo.Providers");
             DropForeignKey("dbo.VirtualNumberAssociations", "State_Id", "dbo.States");
             DropForeignKey("dbo.VirtualNumberAssociations", "Caller_BabajobUserId", "dbo.Users");
             DropForeignKey("dbo.VirtualNumberAssociations", "Callee_BabajobUserId", "dbo.Users");
-            DropIndex("dbo.VirtualNumbers", new[] { "VirtualPhoneNumber_Id" });
-            DropIndex("dbo.VirtualNumbers", new[] { "Purpose_Id" });
-            DropIndex("dbo.VirtualNumbers", new[] { "Provider_Id" });
+            DropIndex("dbo.VirtualNumbers", new[] { "ProviderId" });
+            DropIndex("dbo.VirtualNumbers", new[] { "PurposeId" });
+            DropIndex("dbo.VirtualNumbers", new[] { "NumberId" });
             DropIndex("dbo.VirtualNumberAssociations", new[] { "VirtualNumber_Id" });
             DropIndex("dbo.VirtualNumberAssociations", new[] { "State_Id" });
             DropIndex("dbo.VirtualNumberAssociations", new[] { "Caller_BabajobUserId" });

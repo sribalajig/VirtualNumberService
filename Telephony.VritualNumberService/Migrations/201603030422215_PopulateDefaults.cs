@@ -1,11 +1,11 @@
+using System.Data.Entity.Migrations;
+
 using Telephony.VritualNumberService.Data.Persistence;
 using Telephony.VritualNumberService.Entities.Purpose;
 using Telephony.VritualNumberService.Entities.States;
 
 namespace Telephony.VritualNumberService.Migrations
 {
-    using System.Data.Entity.Migrations;
-    
     public partial class PopulateDefaults : DbMigration
     {
         public override void Up()
