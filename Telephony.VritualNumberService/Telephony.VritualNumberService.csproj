@@ -77,6 +77,7 @@
     <Compile Include="Bootstrap\VirtualNumberServiceBootstrapper.cs" />
     <Compile Include="Data\Repositories\IRepository.cs" />
     <Compile Include="Data\Repositories\Repository.cs" />
+    <Compile Include="Entities\BabajobUserType.cs" />
     <Compile Include="Entities\Purpose\FreeJobApplication.cs" />
     <Compile Include="Entities\Purpose\PaidJobApplication.cs" />
     <Compile Include="Entities\Purpose\Purpose.cs" />
@@ -93,6 +94,18 @@
     <Compile Include="Migrations\201603030855548_PopulateDefaults.cs" />
     <Compile Include="Migrations\201603030855548_PopulateDefaults.Designer.cs">
       <DependentUpon>201603030855548_PopulateDefaults.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603040652037_AddingBabajobUserTypes.cs" />
+    <Compile Include="Migrations\201603040652037_AddingBabajobUserTypes.Designer.cs">
+      <DependentUpon>201603040652037_AddingBabajobUserTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603040657558_PopulateDefaultUserTypes.cs" />
+    <Compile Include="Migrations\201603040657558_PopulateDefaultUserTypes.Designer.cs">
+      <DependentUpon>201603040657558_PopulateDefaultUserTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603040708278_TurnAutoIncrementOffForUserTypes.cs" />
+    <Compile Include="Migrations\201603040708278_TurnAutoIncrementOffForUserTypes.Designer.cs">
+      <DependentUpon>201603040708278_TurnAutoIncrementOffForUserTypes.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelBinder\VirtualNumberModelBinder.cs" />
@@ -129,6 +142,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603030855548_PopulateDefaults.resx">
       <DependentUpon>201603030855548_PopulateDefaults.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603040652037_AddingBabajobUserTypes.resx">
+      <DependentUpon>201603040652037_AddingBabajobUserTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603040657558_PopulateDefaultUserTypes.resx">
+      <DependentUpon>201603040657558_PopulateDefaultUserTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603040708278_TurnAutoIncrementOffForUserTypes.resx">
+      <DependentUpon>201603040708278_TurnAutoIncrementOffForUserTypes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -21,5 +21,7 @@ namespace Telephony.VritualNumberService.Data.Persistence
         public DbSet<Provider> Providers { get; set; } 
 
         public DbSet<PhoneNumber> PhoneNumbers { get; set; }   
+
+        public DbSet<BabajobUserType> BabajobUserTypes { get; set; } 
     }
 }

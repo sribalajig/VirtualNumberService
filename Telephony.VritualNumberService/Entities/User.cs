@@ -7,13 +7,16 @@ namespace Telephony.VritualNumberService.Entities
     {
         protected User() { }
 
-        public User(string babajobUserType, int id)
+        public User(BabajobUserType babajobUserType, int id)
         {
             BabajobUserType = babajobUserType;
             Id = id;
         }
 
-        public string BabajobUserType { get; protected set; }
+        public int BabaJobUserTypeId { get; set; }
+
+        [ForeignKey("BabaJobUserTypeId")]
+        public BabajobUserType BabajobUserType { get; set; }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]

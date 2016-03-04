@@ -3,9 +3,6 @@ using System.Linq;
 using Nancy;
 using Nancy.ModelBinding;
 using Telephony.VritualNumberService.ApplicationServices;
-using Telephony.VritualNumberService.Data.Persistence;
-using Telephony.VritualNumberService.Entities;
-using Telephony.VritualNumberService.Entities.Purpose;
 using Telephony.VritualNumberService.Entities.VirtualNumber;
 
 namespace Telephony.VritualNumberService.Modules.VirtualNumbers

@@ -53,7 +53,7 @@ namespace Telephony.VirtualNumberService.Tests
                         new FreeJobApplication(),
                         GetProvider));
 
-                mockAssociationOne.Setup(a => a.Caller).Returns(new User("seeker", 1));
+                mockAssociationOne.Setup(a => a.Caller).Returns(new User(new BabajobUserType(), 1));
 
                 var mockAssociationTwo = new Mock<VirtualNumberAssociation>();
                 mockAssociationTwo.Setup(a => a.VirtualNumber)
@@ -62,7 +62,7 @@ namespace Telephony.VirtualNumberService.Tests
                         new FreeJobApplication(),
                         GetProvider));
 
-                mockAssociationTwo.Setup(a => a.Caller).Returns(new User("seeker", 1));
+                mockAssociationTwo.Setup(a => a.Caller).Returns(new User(new BabajobUserType(), 1));
 
                 return new List<Mock<VirtualNumberAssociation>>
                 {
