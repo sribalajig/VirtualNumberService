@@ -6,25 +6,25 @@ namespace Telephony.VritualNumberService.Entities
 {
     public class VirtualNumberAssociation
     {
-        [Key]
-        public virtual int Id { get; set; }
-
+        [Column(Order = 1), Key]
         public int CallerId { get; set; }
 
-        [Index(IsClustered = true)]
         [ForeignKey("CallerId")]
         public virtual User Caller { get; set; }
 
+        [Column(Order = 2), Key]
         public int CalleeId { get; set; }
 
         [ForeignKey("CalleeId")]
         public virtual User Callee { get; set; }
 
+        [Column(Order = 3), Key]
         public int VirtualNumberId { get; set; }
 
         [ForeignKey("VirtualNumberId")]
         public virtual VirtualNumber.VirtualNumber VirtualNumber { get; set; }
 
+        [Column(Order = 4), Key]
         public virtual int BabajobJobId { get; set; }
 
         public int StateId { get; set; }
