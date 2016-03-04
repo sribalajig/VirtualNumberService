@@ -25,7 +25,7 @@ namespace Telephony.VritualNumberService.Entities
         [ForeignKey("VirtualNumberId")]
         public virtual VirtualNumber.VirtualNumber VirtualNumber { get; set; }
 
-        public virtual int BabajobJobId { get; protected set; }
+        public virtual int BabajobJobId { get; set; }
 
         public int StateId { get; set; }
 

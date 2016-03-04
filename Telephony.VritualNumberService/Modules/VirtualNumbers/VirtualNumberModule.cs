@@ -38,7 +38,7 @@ namespace Telephony.VritualNumberService.Modules.VirtualNumbers
                                                     && association.Callee.Id 
                                                                 == virtualNumberRequest.Callee.Id
                                                     && association.BabajobJobId 
-                                                                == virtualNumberRequest.BabajobId);
+                                                                == virtualNumberRequest.BabajobJobId);
 
                 if (existingAssociation != null)
                 {

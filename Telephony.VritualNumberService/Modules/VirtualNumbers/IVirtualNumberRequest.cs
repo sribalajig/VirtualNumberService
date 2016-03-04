@@ -11,6 +11,6 @@ namespace Telephony.VritualNumberService.Modules.VirtualNumbers
 
         Purpose Purpose { get; }
 
-        int BabajobId { get; }
+        int BabajobJobId { get; }
     }
 }

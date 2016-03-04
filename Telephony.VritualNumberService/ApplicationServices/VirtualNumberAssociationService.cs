@@ -55,7 +55,8 @@ namespace Telephony.VritualNumberService.ApplicationServices
                 CallerId = virtualNumberAssociation.Caller.Id,
                 CalleeId = virtualNumberAssociation.Callee.Id,
                 StateId = virtualNumberAssociation.State.Id,
-                VirtualNumberId = virtualNumberAssociation.VirtualNumber.Id
+                VirtualNumberId = virtualNumberAssociation.VirtualNumber.Id,
+                BabajobJobId = virtualNumberAssociation.BabajobJobId
             };
 
             _virtualNumberAssociationRepository.Save(newAssociation);
@@ -91,7 +92,8 @@ namespace Telephony.VritualNumberService.ApplicationServices
                 Caller = virtualNumberRequest.Caller,
                 Callee = virtualNumberRequest.Callee,
                 State = new InUse(),
-                VirtualNumber = availableNumber
+                VirtualNumber = availableNumber,
+                BabajobJobId = virtualNumberRequest.BabajobJobId
             };
         }
     }

@@ -9,12 +9,12 @@ namespace Telephony.VritualNumberService.Modules.VirtualNumbers
             User caller, 
             User callee, 
             Purpose purpose,
-            int babajobJobId)
+            int babajobJobJobId)
         {
             Caller = caller;
             Callee = callee;
             Purpose = purpose;
-            BabajobId = babajobJobId;
+            BabajobJobId = babajobJobJobId;
         }
 
         public User Caller { get; protected set; }
@@ -23,6 +23,6 @@ namespace Telephony.VritualNumberService.Modules.VirtualNumbers
 
         public Purpose Purpose { get; protected set; }
 
-        public int BabajobId { get; protected set; }
+        public int BabajobJobId { get; protected set; }
     }
 }
