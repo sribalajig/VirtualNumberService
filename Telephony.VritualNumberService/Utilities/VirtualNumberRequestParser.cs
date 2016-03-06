@@ -1,7 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json.Linq;
 using Telephony.VritualNumberService.Entities;
-using Telephony.VritualNumberService.Entities.Purpose;
 using Telephony.VritualNumberService.Modules.VirtualNumbers;
 
 namespace Telephony.VritualNumberService.Utilities

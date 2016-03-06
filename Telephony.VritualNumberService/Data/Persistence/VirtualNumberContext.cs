@@ -8,6 +8,14 @@ namespace Telephony.VritualNumberService.Data.Persistence
 {
     public class VirtualNumberContext : DbContext
     {
+        public VirtualNumberContext()
+            : base("Babajob")
+        { }
+
+        public VirtualNumberContext(string connectionStringName)
+            : base(connectionStringName)
+        { }
+
         public DbSet<VirtualNumber> VirtualNumbers { get; set; }
 
         public DbSet<VirtualNumberAssociation> VirtualNumberAssociations { get; set; }

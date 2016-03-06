@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Dynamic;
+using System.Linq;
 using Telephony.VritualNumberService.Entities;
 using Telephony.VritualNumberService.Modules.VirtualNumbers;
 
@@ -11,5 +12,7 @@ namespace Telephony.VritualNumberService.ApplicationServices
         IQueryable<VirtualNumberAssociation> Get();
 
         VirtualNumberAssociation Generate(IVirtualNumberRequest virtualNumberRequest);
+
+        VirtualNumberAssociation Get(IVirtualNumberRequest virtualNumberRequest);
     }
 }

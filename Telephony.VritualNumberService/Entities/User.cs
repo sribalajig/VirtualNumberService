@@ -6,7 +6,7 @@ namespace Telephony.VritualNumberService.Entities
     [Table("Users", Schema = "VirtualNumbers")]
     public class User
     {
-        protected User() { }
+        public User() { }
 
         public User(BabajobUserType babajobUserType, int id)
         {
@@ -21,6 +21,6 @@ namespace Telephony.VritualNumberService.Entities
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Id { get; protected set; }
+        public int Id { get; set; }
     }
 }

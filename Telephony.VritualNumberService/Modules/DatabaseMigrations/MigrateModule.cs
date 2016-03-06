@@ -2,7 +2,7 @@
 using System.Linq;
 using Nancy;
 using Telephony.VritualNumberService.Data.Persistence;
-//using Telephony.VritualNumberService.Migrations;
+using Telephony.VritualNumberService.Migrations;
 
 namespace Telephony.VritualNumberService.Modules.DatabaseMigrations
 {
@@ -12,9 +12,9 @@ namespace Telephony.VritualNumberService.Modules.DatabaseMigrations
         {
             Post["/Database/Migrate"] = _ =>
             {
-                //Database.SetInitializer(
-                //    new MigrateDatabaseToLatestVersion
-                //        <VirtualNumberContext, Configuration>());
+                Database.SetInitializer(
+                    new MigrateDatabaseToLatestVersion
+                        <VirtualNumberContext, Configuration>());
 
                 using (var databaseContext = new VirtualNumberContext())
                 {

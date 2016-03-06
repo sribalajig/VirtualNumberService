@@ -86,8 +86,8 @@ namespace Telephony.VritualNumberService.ApplicationServices
 
             if (availableNumber == null)
                 throw new ApplicationException("No more numbers available!");
-
-            return new VirtualNumberAssociation
+            
+            var newAssociation =  new VirtualNumberAssociation
             {
                 Caller = virtualNumberRequest.Caller,
                 Callee = virtualNumberRequest.Callee,
@@ -95,6 +95,23 @@ namespace Telephony.VritualNumberService.ApplicationServices
                 VirtualNumber = availableNumber,
                 BabajobJobId = virtualNumberRequest.BabajobJobId
             };
+
+            this.Save(newAssociation);
+
+            return newAssociation;
+        }
+
+        public VirtualNumberAssociation Get(IVirtualNumberRequest virtualNumberRequest)
+        {
+            return this.Get()
+                .Include(a => a.VirtualNumber.VirtualPhoneNumber)
+                .FirstOrDefault(
+                association => association.Caller.Id
+                                == virtualNumberRequest.Caller.Id
+                            && association.Callee.Id
+                                == virtualNumberRequest.Callee.Id
+                            && association.BabajobJobId
+                                == virtualNumberRequest.BabajobJobId);
         }
     }
 }

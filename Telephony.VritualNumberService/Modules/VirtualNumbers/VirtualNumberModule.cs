@@ -1,6 +1,4 @@
-﻿using System.Data.Entity;
-using System.Linq;
-using Nancy;
+﻿using Nancy;
 using Nancy.ModelBinding;
 using Telephony.VritualNumberService.ApplicationServices;
 using Telephony.VritualNumberService.Entities.VirtualNumber;
@@ -27,15 +25,8 @@ namespace Telephony.VritualNumberService.Modules.VirtualNumbers
             {
                 var virtualNumberRequest = this.Bind<VirtualNumberRequest>();
 
-                var existingAssociation = _virtualNumberAssociationService.Get()
-                                        .Include(a => a.VirtualNumber.VirtualPhoneNumber)
-                                        .FirstOrDefault(
-                                                    association => association.Caller.Id 
-                                                                == virtualNumberRequest.Caller.Id
-                                                    && association.Callee.Id 
-                                                                == virtualNumberRequest.Callee.Id
-                                                    && association.BabajobJobId 
-                                                                == virtualNumberRequest.BabajobJobId);
+                var existingAssociation = 
+                    _virtualNumberAssociationService.Get(virtualNumberRequest);
 
                 if (existingAssociation != null)
                 {
@@ -43,8 +34,6 @@ namespace Telephony.VritualNumberService.Modules.VirtualNumbers
                 }
                 
                 var newAssociation = _virtualNumberAssociationService.Generate(virtualNumberRequest);
-
-                _virtualNumberAssociationService.Save(newAssociation);
 
                 return newAssociation.VirtualNumber;
             };
