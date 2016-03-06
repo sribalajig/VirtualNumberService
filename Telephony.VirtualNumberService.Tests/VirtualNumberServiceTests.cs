@@ -36,7 +36,7 @@ namespace Telephony.VirtualNumberService.Tests
                 new Mock<IRepository<User, VirtualNumberContext>>().Object);
 
             var virtualNumberRequest = new Mock<IVirtualNumberRequest>();
-            virtualNumberRequest.Setup(x => x.Purpose).Returns(new FreeJobApplication());
+            virtualNumberRequest.Setup(x => x.PurposeId).Returns(1);
 
             var number = virtualNumberService
                 .Generate(virtualNumberRequest.Object);
@@ -71,7 +71,7 @@ namespace Telephony.VirtualNumberService.Tests
             {
                 var virtualNumberRequest = new Mock<IVirtualNumberRequest>();
 
-                virtualNumberRequest.Setup(x => x.Purpose).Returns(new FreeJobApplication());
+                virtualNumberRequest.Setup(x => x.PurposeId).Returns(1);
                 virtualNumberRequest.Setup(v => v.Caller).Returns(new User(new BabajobUserType(), 1));
 
 

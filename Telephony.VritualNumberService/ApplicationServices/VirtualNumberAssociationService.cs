@@ -70,13 +70,13 @@ namespace Telephony.VritualNumberService.ApplicationServices
         public VirtualNumberAssociation Generate(IVirtualNumberRequest virtualNumberRequest)
         {
             var availableNumbers = _virtualNumberRepository.Get()
-                .Where(number => number.Purpose.Name.Equals(virtualNumberRequest.Purpose.Name))
+                .Where(number => number.Purpose.Id.Equals(virtualNumberRequest.PurposeId))
                 .Include(number => number.VirtualPhoneNumber);
 
             var virtualNumbersUsedBySeeker = _virtualNumberAssociationRepository.Get()
                 .Where(
                 association => association.Caller.Id == virtualNumberRequest.Caller.Id
-                && association.VirtualNumber.Purpose.Name == virtualNumberRequest.Purpose.Name);
+                && association.VirtualNumber.Purpose.Id == virtualNumberRequest.PurposeId);
 
             var numbersUsedBySeeker = virtualNumbersUsedBySeeker.Select(
                 number => number.VirtualNumber).Include(number => number.VirtualPhoneNumber).ToList();

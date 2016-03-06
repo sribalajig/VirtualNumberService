@@ -12,12 +12,12 @@ namespace Telephony.VritualNumberService.Utilities
         {
             JToken caller;
             JToken callee;
-            JToken purpose;
+            JToken purposeId;
             JToken babajobJobId;
 
             if (!jsonObject.TryGetValue("caller", out caller) || 
                 !jsonObject.TryGetValue("callee", out callee) ||
-                !jsonObject.TryGetValue("purpose", out purpose) ||
+                !jsonObject.TryGetValue("purposeId", out purposeId) ||
                 !jsonObject.TryGetValue("babajobJobId", out babajobJobId))
             {
                 throw new ArgumentException("Ivalid json in the body.");
@@ -26,7 +26,7 @@ namespace Telephony.VritualNumberService.Utilities
             return new VirtualNumberRequest(
                 caller.ToObject<User>(),
                 callee.ToObject<User>(),
-                new FreeJobApplication(), 
+                purposeId.ToObject<int>(), 
                 babajobJobId.ToObject<int>());
         }
     }

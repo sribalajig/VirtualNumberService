@@ -9,7 +9,7 @@ namespace Telephony.VritualNumberService.Modules.VirtualNumbers
 
         User Callee { get; }
 
-        Purpose Purpose { get; }
+        int PurposeId { get; }
 
         int BabajobJobId { get; }
     }

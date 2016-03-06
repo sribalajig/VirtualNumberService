@@ -1,5 +1,4 @@
 ﻿using Telephony.VritualNumberService.Entities;
-using Telephony.VritualNumberService.Entities.Purpose;
 
 namespace Telephony.VritualNumberService.Modules.VirtualNumbers
 {
@@ -8,12 +7,12 @@ namespace Telephony.VritualNumberService.Modules.VirtualNumbers
         public VirtualNumberRequest(
             User caller, 
             User callee, 
-            Purpose purpose,
+            int purposeId,
             int babajobJobJobId)
         {
             Caller = caller;
             Callee = callee;
-            Purpose = purpose;
+            PurposeId = purposeId;
             BabajobJobId = babajobJobJobId;
         }
 
@@ -21,7 +20,7 @@ namespace Telephony.VritualNumberService.Modules.VirtualNumbers
 
         public User Callee { get; protected set; }
 
-        public Purpose Purpose { get; protected set; }
+        public int PurposeId { get; protected set; }
 
         public int BabajobJobId { get; protected set; }
     }
