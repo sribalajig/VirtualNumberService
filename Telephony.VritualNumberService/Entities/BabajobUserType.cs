@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Telephony.VritualNumberService.Entities
 {
+    [Table("BabajobUserTypes", Schema = "VirtualNumbers")]
     public class BabajobUserType
     {
         [Key]

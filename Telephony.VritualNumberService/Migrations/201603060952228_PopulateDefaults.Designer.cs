@@ -7,13 +7,13 @@ namespace Telephony.VritualNumberService.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class TurnAutoIncrementOffForUserTypes : IMigrationMetadata
+    public sealed partial class PopulateDefaults : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(TurnAutoIncrementOffForUserTypes));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(PopulateDefaults));
         
         string IMigrationMetadata.Id
         {
-            get { return "201603040708278_TurnAutoIncrementOffForUserTypes"; }
+            get { return "201603060952228_PopulateDefaults"; }
         }
         
         string IMigrationMetadata.Source

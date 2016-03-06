@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Telephony.VritualNumberService.Entities
 {
+    [Table("Providers", Schema = "VirtualNumbers")]
     public class Provider
     {
         public Provider() { }

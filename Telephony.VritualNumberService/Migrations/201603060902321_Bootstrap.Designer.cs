@@ -7,13 +7,13 @@ namespace Telephony.VritualNumberService.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddCompositeKeyVNumberAssociation : IMigrationMetadata
+    public sealed partial class Bootstrap : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddCompositeKeyVNumberAssociation));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Bootstrap));
         
         string IMigrationMetadata.Id
         {
-            get { return "201603040913231_AddCompositeKeyVNumberAssociation"; }
+            get { return "201603060902321_Bootstrap"; }
         }
         
         string IMigrationMetadata.Source

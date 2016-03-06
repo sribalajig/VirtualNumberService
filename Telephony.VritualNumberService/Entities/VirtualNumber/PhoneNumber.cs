@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Telephony.VritualNumberService.Entities.VirtualNumber
 {
+    [Table("PhoneNumbers", Schema = "VirtualNumbers")]
     public class PhoneNumber
     {
         private readonly string _countryCode;
@@ -17,6 +19,7 @@ namespace Telephony.VritualNumberService.Entities.VirtualNumber
         [Key]
         public int Id { get; protected set; }
 
+        [Index(IsUnique = true)]
         public string Number { get; protected set; }
 
         public string GetFullNumber()

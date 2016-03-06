@@ -87,33 +87,13 @@
     <Compile Include="Entities\States\State.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\VirtualNumberAssociation.cs" />
-    <Compile Include="Migrations\201603030821207_Bootstrap.cs" />
-    <Compile Include="Migrations\201603030821207_Bootstrap.Designer.cs">
-      <DependentUpon>201603030821207_Bootstrap.cs</DependentUpon>
+    <Compile Include="Migrations\201603060902321_Bootstrap.cs" />
+    <Compile Include="Migrations\201603060902321_Bootstrap.Designer.cs">
+      <DependentUpon>201603060902321_Bootstrap.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603030855548_PopulateDefaults.cs" />
-    <Compile Include="Migrations\201603030855548_PopulateDefaults.Designer.cs">
-      <DependentUpon>201603030855548_PopulateDefaults.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603040652037_AddingBabajobUserTypes.cs" />
-    <Compile Include="Migrations\201603040652037_AddingBabajobUserTypes.Designer.cs">
-      <DependentUpon>201603040652037_AddingBabajobUserTypes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603040657558_PopulateDefaultUserTypes.cs" />
-    <Compile Include="Migrations\201603040657558_PopulateDefaultUserTypes.Designer.cs">
-      <DependentUpon>201603040657558_PopulateDefaultUserTypes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603040708278_TurnAutoIncrementOffForUserTypes.cs" />
-    <Compile Include="Migrations\201603040708278_TurnAutoIncrementOffForUserTypes.Designer.cs">
-      <DependentUpon>201603040708278_TurnAutoIncrementOffForUserTypes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603040905053_AddUniqueConstraintsVNumberAssociation.cs" />
-    <Compile Include="Migrations\201603040905053_AddUniqueConstraintsVNumberAssociation.Designer.cs">
-      <DependentUpon>201603040905053_AddUniqueConstraintsVNumberAssociation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603040913231_AddCompositeKeyVNumberAssociation.cs" />
-    <Compile Include="Migrations\201603040913231_AddCompositeKeyVNumberAssociation.Designer.cs">
-      <DependentUpon>201603040913231_AddCompositeKeyVNumberAssociation.cs</DependentUpon>
+    <Compile Include="Migrations\201603060952228_PopulateDefaults.cs" />
+    <Compile Include="Migrations\201603060952228_PopulateDefaults.Designer.cs">
+      <DependentUpon>201603060952228_PopulateDefaults.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelBinder\VirtualNumberModelBinder.cs" />
@@ -145,26 +125,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603030821207_Bootstrap.resx">
-      <DependentUpon>201603030821207_Bootstrap.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603060902321_Bootstrap.resx">
+      <DependentUpon>201603060902321_Bootstrap.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603030855548_PopulateDefaults.resx">
-      <DependentUpon>201603030855548_PopulateDefaults.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603040652037_AddingBabajobUserTypes.resx">
-      <DependentUpon>201603040652037_AddingBabajobUserTypes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603040657558_PopulateDefaultUserTypes.resx">
-      <DependentUpon>201603040657558_PopulateDefaultUserTypes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603040708278_TurnAutoIncrementOffForUserTypes.resx">
-      <DependentUpon>201603040708278_TurnAutoIncrementOffForUserTypes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603040905053_AddUniqueConstraintsVNumberAssociation.resx">
-      <DependentUpon>201603040905053_AddUniqueConstraintsVNumberAssociation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603040913231_AddCompositeKeyVNumberAssociation.resx">
-      <DependentUpon>201603040913231_AddCompositeKeyVNumberAssociation.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603060952228_PopulateDefaults.resx">
+      <DependentUpon>201603060952228_PopulateDefaults.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

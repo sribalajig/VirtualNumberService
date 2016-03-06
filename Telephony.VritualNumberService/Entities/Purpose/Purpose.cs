@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Telephony.VritualNumberService.Entities.Purpose
 {
+    [Table("Purposes", Schema = "VirtualNumbers")]
     public abstract class Purpose
     {
         [Key]

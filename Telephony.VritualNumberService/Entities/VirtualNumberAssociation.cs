@@ -4,6 +4,7 @@ using Telephony.VritualNumberService.Entities.States;
 
 namespace Telephony.VritualNumberService.Entities
 {
+    [Table("VirtualNumberAssociations", Schema = "VirtualNumbers")]
     public class VirtualNumberAssociation
     {
         [Column(Order = 1), Key]
